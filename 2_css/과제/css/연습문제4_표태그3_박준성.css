@@ -1,0 +1,84 @@
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body{
+    width: 550px;
+}
+
+table{
+    border-collapse: collapse;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+table th, table, td{
+    height: 26px;
+}
+
+table tr:nth-of-type(5), table tr:nth-of-type(7){
+    /* border-bottom: 2px solid black; */
+}
+
+table th{
+    /* border: 2px solid black; */
+}
+
+table td{
+    text-align: right;
+}
+
+table td:nth-of-type(3){
+    /* border-right: 2px solid black; */
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.header1-main{
+    background-color: lightpink;
+}
+
+.header1-sub{
+    background-color: mistyrose;
+}
+
+.header2-main{
+    background-color: lightblue;
+}
+
+.header2-sub{
+    background-color: paleturquoise;
+}
+
+.header3-main{
+    background-color: khaki;
+}
+
+.header3-sub{
+    background-color: palegoldenrod;
+}
+
+.header4-main{
+    background-color: darkslategray;
+    color: white;
+}
+
+.header4-sub{
+    background-color: teal;
+    color: white;
+}
+
+.empty{
+    background-color: lightgray;
+}
+
+.total{
+    border: 2px solid black;
+    font-weight: bold;
+}

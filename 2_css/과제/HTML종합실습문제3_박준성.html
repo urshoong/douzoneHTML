@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML종합실습문제3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/HTML종합실습문제3_박준성.css">
+</head>
+<body>
+    <form>
+        <fieldset class="wrap">
+            <fieldset>
+                <legend>필수 입력 사항</legend>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td><input type="text" name="id" placeholder="아이디 10글자 이내" maxlength="10" style="width: 240px;"></td>
+                        <td><input type="button" name="checkId" class="checkId" value="중복 확인"></td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td><input type="password" name="password" placeholder="영문,숫자,툭수문자 포함 8자 이상" minlength="8" style="width: 240px;"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호 확인</th>
+                        <td><input type="password" name="checkPassword" style="width: 240px;"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><input type="email" name="email" style="width: 240px;"></td>
+                        <td>
+                            <select name="emailList" id="emaiList" class="emailList">
+                                <option value="" selected>직접입력</option>
+                                <option value="@gmail.com">gmail</option>
+                                <option value="@naver.com">naver</option>
+                                <option value="@daum.net">daum</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            
+            <br>
+
+            <fieldset>
+                <legend>추가 정보</legend>
+                <div class="info-data1">
+                    <label class="data-title">프로필 사진</label>
+                    <input type="file" name="file" class="file data-info">
+                </div>
+
+                <br>
+                <div>
+                    <label class="data-title">성별</label>
+                    &nbsp;
+                    <label><input type="radio" name="gender" id="male" value="M" checked>남자</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label><input type="radio" name="gender" id="female" value="F">여자</label>
+                </div>
+                <br>
+                <div>
+                    <label class="data-title">생년월일</label>
+                    <input type="date" class="date">
+                </div>
+                <br>
+                <div>
+                    <label class="data-title">취미</label>
+                    <div class="hobby-list">
+                        <label><input type="checkbox" name="hobby" value="baseball"> 야구&nbsp;&nbsp;</label>
+                        <label><input type="checkbox" name="hobby" value="basketball"> 농구&nbsp;</label>
+                        <label><input type="checkbox" name="hobby" value="football"> 축구&nbsp;</label>
+                        <br>
+                        <label><input type="checkbox" name="hobby" value="study"> 공부&nbsp;&nbsp;</label>
+                        <label><input type="checkbox" name="hobby" value="music"> 음악감상&nbsp;</label>
+                        <br>
+                        <label>
+                            <input type="checkbox" name="hobby" value=""> 기타 : 
+                            <input type="text" name="hobbyEtc">
+                        </label>
+                    </div>
+                </div>
+
+                <br>
+
+                <div>
+                    <label class="data-title">자기소개</label>
+                    <br>
+                    <textarea name="remark" class="remark" cols="50" rows="4" style="resize: none;"></textarea>
+                </div>
+            </fieldset>
+
+            &nbsp;&nbsp;
+            <div class="button-list">
+                <input type="submit" class="submit" value="회원가입">
+                <input type="reset" class="reset" value="다시입력">
+                <input type="button" class="goback" value="이전으로">
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

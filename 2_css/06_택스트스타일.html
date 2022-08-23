@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_택스트 스타일</title>
+    <link rel="stylesheet" href="css/6.css">
+</head>
+<body>
+    <h1>텍스트 스타일</h1>
+
+    <h3>color 속성 : 텍스트의 색상을 지정할 수 있다.</h3>
+    <pre>
+        선택자{
+            color:색상명영문이름|16진수숫자|rgb|rgba|hsl|hsla;
+        }
+    </pre>
+    <p>색상값 참조사이트 : <a href="http://www.colorpicker.com" target="_blank">사이트로이동</a></p>
+
+    <ul>
+        <li id="c-name">색상명으로 지정</li>
+        <li id="c-16">16진수값으로 지정</li>
+        <li id="c-rgb">rgb로 지정</li>
+        <li id="c-rgba">rgba로 지정</li>
+        <li id="c-hsl">hsl로 지정</li>
+        <li id="c-hsla">hsla로 지정</li>
+    </ul>
+
+    <hr>
+
+
+    <h3>text-decoration 속성 : 텍스트에 줄을 긋거나 줄을 없앨때 사용</h3>
+    <pre>
+        선택자{
+            text-decoration:none|underline|overline|line-through;
+        }
+    </pre>
+    <ul>
+        <li><a href="http://www.naver.com" id="td1">하이퍼링크 밑줄 없애기</a></li>
+        <li id="td2">텍스트영역 아래 줄 긋기</li>
+        <li id="td3">텍스트영역 중간에 줄 긋기</li>
+        <li id="td4">텍스트영역 위에 줄 긋기</li>
+    </ul>
+
+    <hr>
+
+    <h3>text-transform 속성 : 영문 텍스트의 대소문자 변환시 사용</h3>
+    <pre>
+        선택자{
+            text-transform:none|capitalize|uppercase|lowercase;
+        }
+    </pre>
+    <ul>
+        <li id="tt1">none</li>
+        <li id="tt2">capitalize : 영문자의 first 글자만 대문자로</li>
+        <li id="tt3">uppercase : 모든 영문자를 대문자로</li>
+        <li id="tt4">Lowercase : 모든 영문자를 소문자로</li>
+    </ul>
+
+    <hr>
+
+    <h3>text-shadow 속성 : 텍스트에 그림자 효과를 줄 때 사용</h3>
+    <pre>
+        선택자{
+            text-shadow:none|가로거리 세로거리 번짐정도 색상;
+        }
+    </pre>
+    <div id="bg">
+        <span id="ts1" class="shadow">HTML5</span> <br><br><br>
+        <span id="ts2" class="shadow">HTML5</span> <br><br><br>
+        <span id="ts3" class="shadow">HTML5</span> <br><br><br>
+        <span id="ts4" class="shadow">HTML5</span>
+    </div>
+
+    <hr>
+</body>
+</html>

@@ -1,0 +1,47 @@
+#c-name{color: red;}
+#c-16{color: #ff0000;}
+#c-rgb{color: rgb(13, 13, 49);}
+#c-rgba{color: rgba(13, 13, 4, 0.6);}/* 0~1사이의 값으로 지정. 0:완전투명, 1:완전불투명 */
+#c-hsl{color: hsl(360, 50%, 55%);}
+#c-hsla{color: hsla(360, 50%, 50%, 0.5);}
+
+/*텍스트에 밑줄 표시*/
+#td1{text-decoration: none;}
+#td2{text-decoration: underline;}
+#td3{text-decoration: line-through;}
+#td4{text-decoration: overline;}
+
+/*텍스트 대소문자 변경 지정*/
+#tt1{text-transform: none;}
+#tt2{text-transform: capitalize;}
+#tt3{text-transform: uppercase;}
+#tt4{text-transform: lowercase;}
+
+/*공통속성으로 두께 사이즈 지정*/
+.shadow{
+    font-size: 50px;
+    font-weight: 900;
+}
+
+#ts1{
+    color: orangered;
+    text-shadow: 5px 5px orange;
+}
+
+#ts2{
+    color: white;
+    text-shadow: 0px 0px 20px black;
+}
+
+#ts3{
+    color: white;
+    text-shadow: 10px 10px 20px yellowgreen;
+}
+
+#ts4{
+    text-shadow: 0px 0px 4px gray
+    ,0px -5px 4px yellow
+    ,0px -10px 6px orange
+    ,0px -15px 11px orangered
+    ,0px -20px 18px red
+}

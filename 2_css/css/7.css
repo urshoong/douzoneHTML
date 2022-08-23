@@ -1,0 +1,13 @@
+#p1{direction: ltr;}
+#p2{direction: rtl;}
+
+#p3{text-align: left;}
+#p4{text-align: right;}
+#p5{text-align: center;}
+#p6{text-align: justify;}
+
+#p7{line-height: normal;}
+#p8{line-height: 30px;}
+#p9{line-height: 3em;}
+#p10{line-height: 200%;}
+#p11{line-height: 3;}/*가변단위 16px 의 3배, 배수로 적용*/
