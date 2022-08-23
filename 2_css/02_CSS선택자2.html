@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS선택자2</title>
+    <!-- 외부스타일 : 스타일만 따로 관리하는 .css 확장자 외부문서를 만들고 link 를 통해 연결시켜 주는 방식 -->
+    <!-- href : 연결할 외부문서 경로 rel : 외부문서와의 관계 표시 -->
+    <link rel="stylesheet" href="css/2.css">
+</head>
+<body>
+    <h2>1. 기본 속성 선택자</h2>
+    <p>기본선택자뒤에 [] 를 사용하여 속성과 속성값을 사용한다.</p>
+    <pre>
+        선택자[속성=속성값]{
+            스타일속성: 값
+        }
+    </pre>
+    <div class="div-class" name="name1">div1</div>
+    <div class="div-class" name="name2">div2</div>
+    <div class="div-class" name="name3 name1">div3</div>
+    <div class="class-div" name="name3">div4</div>
+
+    <hr>
+    <h2>2.자손선택자와 후손 선택자 </h2>
+    <p>자손: 바로 하위요소들/ 후손: 하위요소들 전부</p>
+    <pre>
+        * 자손선택자 
+        a>b{
+            스타일속성:값;
+        }
+        * 후손선택자 
+        a b{
+            스타일속성:값;
+        }
+    </pre>
+    <div id="test1">
+        <h4>자손입니다.</h4>
+        <h4>나도 자손입니다.</h4>
+        <ul>
+            나도 자손입니다
+            <li>나는 ul 자손이면서 div의 후손입니다.</li>
+            <li>나도 ul 자손이면서 div의 후손입니다.</li>
+        </ul>
+    </div>
+    <hr>
+
+    <h2>3.동위선택자</h2>
+    <p>동위관계(같은레벨) 에서 뒤에 위치한 태그를 선택할때 사용한다.</p>
+    <pre>
+        * a뒤에있는 b요소 하나만선택
+        a+b{
+            스타일속성:값;
+        }
+
+        * a뒤에있는 모든 b 요소 선택
+        a~b{
+            스타일속성:값;
+        }
+    </pre>
+
+    <div id="div-test">div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+
+    <hr>
+    <h2>4.반응선택자</h2>
+    <p>사용자의 움직임에따라 달라지는 선택자</p>
+    <pre>
+        * 사용자가 클릭한태그
+        선택자:active{
+            스타일속성:값;
+        }
+
+        * 사용자의 마우스가 올라가 있는 태그
+        선택자:hover{
+            스타일속성:값;
+        }
+    </pre>
+    <div id="active-test">active테스트</div>
+    <br>
+    <div id="hover-test">hover테스트</div>
+
+    <hr>
+    <h2>5.상태선택자</h2>
+    <p>입력양식의 상태에따라 선택되는 선택자</p>
+    <pre>
+
+        1) 체크된상태의 태그
+        선택자:checked{
+            스타일속성:값;
+        }
+    </pre>
+
+    <input type="checkbox" id="apple" name="fruits" value="사과">
+    <label for="apple">사과</label>
+    <input type="checkbox" id="banana" name="fruits" value="바나나">
+    <label for="banana">바나나</label>
+    <input type="checkbox" id="peach" name="fruits" value="복숭아">
+    <label for="peach">복숭아</label>
+
+    <pre>
+        2)초점이 맞추어진 input 태그: 선택자:focus{설정내용}
+    </pre>
+    <label for ="userid" >아이디 : </label>
+    <input type ="text" id="userid" placeholder="아이디를 입력하세요 " autofocus><br>
+    <label for = "password"  >패스워드 :</label>
+    <input type="password" id="password" placeholder="비밀번호를 입력하세요 " ><br>
+
+    <pre>
+        3) 사용가능한 input 태그 선택 :input태그:enabled{설정내용},
+           사용불가능한 input 태그 선택 : input태그:disabled{설정내용}
+    </pre>
+    <h3>당신의 연령대는?</h3>
+    <select>
+        <option value="10" disabled>10대</option>
+        <option value="20">20대</option>
+        <option value="30">30대</option>
+        <option value="40">40대</option>
+        <option value="50">50대</option>
+        <option value="60" disabled>60대</option>
+    </select>
+
+    <button>사용가능버튼</button>
+    <button disabled>사용불가능버튼</button>
+</body>
+</html>

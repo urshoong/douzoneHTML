@@ -1,0 +1,87 @@
+/*일반구조선택자*/
+/*형제관계 태그중 첫번째 선택자*/
+#test1 p:first-child{
+    background-color: red;
+    color: white;
+}
+
+/*형제관계 태그중 마지막 선택자*/
+/*마지막 자식 태그가 p가 아니기 때문에 변화가 없다*/
+#test1 p:last-child{
+    background-color: orange;
+    color: white;
+}
+
+#test1 p:nth-child(2n){
+    background-color: yellowgreen;
+    color: white;
+}
+
+#test1 p:nth-last-child(2){
+    background-color: skyblue;
+    color: white;
+}
+
+/*형태구조선택자*/
+/*형제관계 태그중에서 첫번째 태그 선택*/
+#test2 p:first-of-type{
+    background-color: red;
+    color: white;
+}
+/*형제관계 태그중에서 마지막 태그 선택*/
+#test2 p:last-of-type{
+    background-color: red;
+    color: white;
+}
+
+#test2 p:nth-of-type(2n){
+    background-color: yellowgreen;
+    color: white;
+}
+
+#test2 p:nth-last-of-type(3){
+    background-color: skyblue;
+    color: white;
+}
+
+/*문자 선택자*/
+
+/*첫번째 글자 선택*/
+/* *:: 가상요소 선택자 - 특정위치 특정영역, 요소를 선택하기 위하여 만들어놓은 선택자 */
+#test3 p::first-letter{
+    font-size:2em;
+}
+
+#test3 p::first-line{
+    background-color: skyblue;
+}
+/*태그뒤에 위치하는 공간을 선택(가상요소 선택자) : 내용삽입, (인라인(글자)요소)*/
+#test3 p::after{
+    content: "@@@태그추가"; /*가상태그 선택자 사용시 내용이 없어도 빈값으로 꼭 명시*/
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+/* 태그 앞에 추가 */
+#test3 p::before{
+    content: "1.";
+}
+/*사용자가 드래그한 글자를 선택*/
+#test3 p::selection{
+    background-color: red;
+    color: white;
+}
+
+/*부정 선택자*/
+#test4 p:not(:nth-child(2n-1)){
+    background-color: orange;
+}
+
+#test4 p{
+    counter-increment: rint 5;
+}
+/*태그별로 자동번호를 매겨주는 속성 https://developer.mozilla.org/en-US/docs/Web/CSS/counter-increment*/
+#test4 p::before{
+    content: counter(rint) ". ";
+}
