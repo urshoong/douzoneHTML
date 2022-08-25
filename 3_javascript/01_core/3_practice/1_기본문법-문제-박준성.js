@@ -26,20 +26,7 @@ console.log('-------------------------------------------------------------------
 var grade = '손님';     //'일반회원', '운영자'로 변경해서 테스트
 
 // 코드 작성
-var authority;
-switch(grade){
-    case '손님':
-        authority = '글 읽기';
-        break;
-    case '일반회원':
-        authority = '글 읽기, 글 쓰기';
-        break;
-    case '운영자':
-        authority = '글 읽기, 글 쓰기, 글 삭제';
-        break;
-    default:
-        break;
-    }
+var authority = grade == '손님' ? '글 읽기' : grade == '일반회원'? '글 읽기, 글 쓰기' : '글 읽기, 글 쓰기, 글 삭제';
     
 console.log(grade + "의 경우 " + authority + " 가 가능합니다.");
 
