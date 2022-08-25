@@ -1,0 +1,17 @@
+.wrap{
+    border: 1px solid black;
+    height: 300px;
+}
+
+.column1{
+    column-width: 300px;
+    column-gap: 50px;
+    overflow: auto;
+    /* overflow: hidden; */
+}
+
+.column2{
+    column-count: 3;
+    column-rule-style: dashed;
+    overflow: scroll;
+}

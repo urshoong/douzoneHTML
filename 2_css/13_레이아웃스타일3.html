@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_레이아웃스타일3</title>
+    <link rel="stylesheet" href="css/13.css">
+</head>
+<body>
+    <h1>배치 관련 스타일</h1>
+    <h3>절대위치와 상대위치</h3>
+    <div class="outer">
+        <div class="positioning first">첫번째 자식</div>
+        <div class="positioning second">두번째 자식</div>
+        <div class="positioning third">세번째 자식</div>
+
+    </div>
+
+    <h3>고정위치</h3>
+    <div class="positioning fixed-area"></div>
+
+    <span>hello</span>
+    <br><br><br><br><br><br>
+
+    <hr>
+
+    <h3>visibility</h3>
+    <p>페이지에 특정 속성을 보이거나 보이지 않게 하는 속성</p>
+    <div class="vis-test vis-test1"></div>
+    <div class="vis-test vis-test2"></div>
+    <div class="vis-test vis-test3"></div>
+    <p>display:none 속성은 페이지 공간도 차지 하지 않고, visibility:hidden 속성은 페이지 공간은 차지한다.</p>
+
+    <h3>z-index</h3>
+    <p>페이지 안의 요소들을 순서대로 위로 쌓는 속성이다.</p>
+    <div class="wrap">
+        <div class="z-test z-test1">요소1</div>
+        <div class="z-test z-test2">요소2</div>
+        <div class="z-test z-test3">요소3</div>
+    </div>
+
+    <br><br><br><br><br><br><br>
+    <hr>
+
+    <h3>float속성</h3>
+    <p>페이지 내의 요소의 위치를 왼쪽이나 오른쪽으로 지정하는 속성</p>
+
+    <div class="float-test">111</div>
+    <div class="float-test">222</div>
+    <div class="float-test">333</div>
+    <div class="float-test">444</div>
+    <div class="float-test">555</div>
+
+    <br clear="right">
+
+    <table border="1" style="border-collapse:separate; empty-cells:hide">
+        <tr>
+            <td height="100" style="vertical-align: top">1</td>
+            <td>2</td>
+            <th>5</th>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

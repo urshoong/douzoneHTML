@@ -1,0 +1,94 @@
+.size-test{
+    border: 2px solid red;
+}
+
+#test1{
+    width: 800px;
+    height: 200px;
+}
+
+#test2{
+    width: 50%;
+    max-width: 400px;
+    height: 200px;
+}
+
+.block{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    color: white;
+}
+
+.area1{
+    background-color: red;
+}
+.area2{
+    background-color: orange;
+}
+.area3{
+    background-color: yellowgreen;
+}
+.area4{
+    background-color: green;
+}
+.area5{
+    background-color: blue;
+}
+
+.block-test1{
+    display: inline;
+}
+
+.block-test2{
+    display: inline-block;
+}
+.block-test3{
+    display: block;
+}
+
+.container4{
+    width: 500px;
+    height: 500px;
+    background-color: aquamarine;
+    display: flex;
+
+    /* flex-direction: row; 주축설정 row : 좌에서 우로, column : 위에서 아래로 주축이 바뀜 */
+    /* flex-direction: column; */
+    
+    /* flex-wrap: nowrap; */
+    /* flex-wrap: wrap;줄바꿈 처리, default >> nowrap : 한줄로 표시 */
+
+    /* justify-content: center; */
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end;주축의 정렬을 설정 */
+
+    /* align-content: flex-start;두줄이상 align-itmes : 한줄한행에대한 교차축 정렬 */
+
+
+}
+
+.container4 .block-test4{
+    width: 200px;
+    height: 50px;
+    flex-grow: 1;/*화면의 요소 사이즈 배율 설정*/
+    flex-basis: 0;/*기본 너비 설정 flex-grow 값이 0일 때만 설정 가능*/
+    flex-shrink: 1;
+}
+
+
+.container4 .block-test4:nth-child(3){/*자식*/
+    flex-grow: 2;/*증가너비비율*/
+}
+
+.container4 .block-test4:nth-child(2){/*자식*/
+    order: -1;/* 기본값은 모두 0이다 특정속성을 앞으로 오게 할떄 -1*/
+  
+}
+.container4 .block-test4:nth-child(4){/*자식*/
+    order: -2;/* 기본값은 모두 0이다 특정속성을 더앞으로 오게 할떄 -2*/
+}
+
+.container4 .block-test4:nth-child(5){/*자식*/
+    flex-shrink: 2;
+}

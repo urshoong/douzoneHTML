@@ -1,0 +1,27 @@
+#ul1{
+    list-style-type: disc;
+    list-style-type: circle;
+    list-style-type: square;
+    /* list-style-type: none; */
+}
+
+#ol1{
+    list-style-type: decimal;
+    list-style-type: decimal-leading-zero;
+    list-style-type: lower-alpha;
+    list-style-type: upper-alpha;
+    list-style-type: lower-roman;
+    list-style-type: upper-roman;
+    /* list-style-type: none; */
+}
+
+#position{
+    list-style-type: lower-alpha;
+    list-style-position: inside;
+    /* list-style-position: outside; */
+}
+
+#image-bullet{
+    list-style-image: url("../sample/image/iconsample.PNG");
+    list-style-position: inside;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_목록스타일</title>
+    <link rel="stylesheet" href="css/9.css">
+</head>
+<body>
+    <h1>목록 스타일</h1>
+    <pre>
+        * 순서 없는 목록 스타일
+        선택자{
+            list-style-type:disc|circle|square|none;
+        }
+        
+        * 순서 있는 목록 스타일
+        선택자{
+            list-style-type:decimal|decimal-leading-zero;
+            list-style-type:lower-alpha|upper-alpha;
+            list-style-type:lower-roman|upper-roman;
+        }
+    </pre>
+
+    <h3>순서없는 목록스타일</h3>
+    <ul id="ul1">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>JQuery</li>
+    </ul>
+
+    <h3>순서있는 목록스타일</h3>
+    <ol id="ol1">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>JQuery</li>
+    </ol>
+
+    <hr>
+
+    <h3>추가적인 목록스타일</h3>
+    <pre>
+        * 불릿기호 위치(글머리기호)
+        선택자{
+            list-style-position:inside|outside;
+        }
+
+        * 불릿기호로 이미지 지정
+        선택자{
+            list-style-image:url("적용시킬이미지 경로");
+        }
+    </pre>
+
+    <ol id="position">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>JQuery</li>
+    </ol>
+
+    <ul id="image-bullet">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>JQuery</li>
+    </ul>
+</body>
+</html>

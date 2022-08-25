@@ -1,0 +1,31 @@
+.test{
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+}
+
+.test1{
+    padding: 100px;
+}
+
+.test2{
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+.test3{
+    padding: 50px 20px 10px 0px;/*위 오른쪽 아래 왼쪽*/
+}
+
+.test4{
+    margin: 50px;
+}
+
+.test5{
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.test6{
+    margin: 50px 30px 20px 0px;
+}

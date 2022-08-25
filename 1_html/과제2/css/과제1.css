@@ -1,0 +1,42 @@
+.wrap{
+    position: relative;
+    border: 2px solid black;
+    width: 920px;
+    margin: 0 auto;
+}
+
+.notice th{
+    text-align: right;
+    padding-right: 10px;
+}
+
+#content{
+    resize: none;
+}
+
+.buttons{
+    text-align: center;
+}
+
+.list{
+    width: 100%;
+}
+
+.list th{
+    background-color: rgb(255,127,80);
+    color: white;
+    height: 40px;
+}
+
+.list .summary th{
+    height: 20px;
+}
+
+.list td{
+    background-color: rgb(255, 255, 224);
+}
+
+.btn{
+    width: 100%;
+    height: 100%;
+}

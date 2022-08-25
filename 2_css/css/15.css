@@ -1,0 +1,18 @@
+table{
+    width: 300px;
+    height: 400px;
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 5px;
+    empty-cells: hide;
+    border-collapse: collapse;
+    table-layout: fixed;
+    word-break: break-all;
+}
+
+table td{
+    width: 80px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: top;
+}

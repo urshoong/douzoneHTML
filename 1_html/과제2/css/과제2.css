@@ -1,0 +1,163 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.wrap{
+    position: relative;
+    width: 950px;
+    margin: 40px auto;
+    
+}
+
+.title_area{
+    position: relative;
+    width: 100%;
+    height: 90px;
+}
+
+.title{
+    display: block;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.logo{
+    position: absolute;
+    top: 0;
+    left: 40px;
+}
+
+.navi{
+    width: 100%;
+    height: 30px;
+}
+
+.navi ul{
+    list-style-type: none;
+}
+
+.navi ul li{
+    float: left;
+    background-color: rgb(100, 173, 21);
+    color: white;
+    width: 25%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.navi ul li::after{
+    clear: both;
+}
+
+.content_area{
+    position: relative;
+    width: 100%;
+    height: 475px;
+}
+
+.content_area>div{
+    position: relative;
+    float: left;
+    height: 100%;
+}
+
+.content_area img{
+    width: 100%;
+}
+
+.left_area{
+    width: 15%;
+}
+
+.middle_area{
+    width: 60%;
+    box-sizing: border-box;
+}
+
+.right_area{
+    width: 25%;
+}
+
+.right_area::after{
+    clear: both;
+}
+
+.content{
+    position: relative;
+    /* display: inline-block; */
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+}
+
+.content img{
+    position: relative;
+    width: 100%;
+}
+
+.content label{
+    position: relative;
+    top: -5px;
+}
+
+.login_area{
+    position: relative;
+    width: 100%;
+}
+
+.login_form{
+    position: relative;
+    width: 100%;
+    /* float: left; */
+}
+
+.input_area{
+    position: relative;
+    height: 60px;
+    width: 65%;
+    float: left;
+}
+
+.input_area input{
+    width: 100%;
+    height: 50%;
+    border: 1px solid rgb(117,117,117);
+    box-sizing: border-box;
+}
+
+.button_area{
+    position: relative;
+    width: 35%;
+    float: left;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+}
+
+.login_btn{
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(117,117,117);
+}
+
+.member_action{
+    clear: both;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.member_action a{
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer_area{
+    margin-top: 15px;
+}
