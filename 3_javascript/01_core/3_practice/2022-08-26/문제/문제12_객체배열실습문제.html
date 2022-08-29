@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>객체 실습 문제</h1>
+	
+	문제2. <br>
+	다음 입력 버튼 클릭시 학생정보를 3명 저장받아(for문 사용) <br>
+	테이블을 생성하여 출력하는 코드를 작성하세요. <br>
+	단, 학생 정보는 객체로 처리하여 저장후 테이블에 입력하고<br>
+	모든 학생 정보는 객체 배열에 저장하여 console.log(objectArr)로 출력시 <br>
+	객체 배열 정보가 console.log에 나와야 함 <br>
+	
+
+	<div align="center">
+        <table id="memberInfo" border="1" style="width:500px; height:300px;">
+            <tr>
+            	<th>이름</th>
+            	<th>나이</th>
+            	<th>주소</th>
+            </tr>
+            <tr>
+            	<td class="name"></td>
+            	<td class="age"></td>
+            	<td class="addr"></td>
+            </tr>
+            <tr>
+            	<td class="name"></td>
+            	<td class="age"></td>
+            	<td class="addr"></td>
+            </tr>
+            <tr>
+            	<td class="name"></td>
+            	<td class="age"></td>
+            	<td class="addr"></td>
+            </tr>
+        </table>
+		<label style="color:red;">학생정보 테이블</label><br>
+		<button onclick="student();">입력 및 출력</button>
+	</div>  
+	
+	<script>
+		function student(){
+			// var name1 = prompt('1번째 학생 이름 입력');
+			// var age1 = prompt('1번째 학생 나이 입력');
+			// var addr1 = prompt('1번째 학생 주소 입력');
+			// var name2 = prompt('2번째 학생 이름 입력');
+			// var age2 = prompt('2번째 학생 나이 입력');
+			// var addr2 = prompt('2번째 학생 주소 입력');
+			// var name3 = prompt('3번째 학생 이름 입력');
+			// var age3 = prompt('3번째 학생 나이 입력');
+			// var addr3 = prompt('3번째 학생 주소 입력');
+			let objectArr = [];
+			for(let i = 0; i < 3; i++){
+				let student = {};
+				student.name = prompt((i+1) + '번째 학생 이름 입력');
+				student.age = prompt((i+1) + '번째 학생 나이 입력');
+				student.addr = prompt((i+1) + '번째 학생 주소 입력');
+				objectArr.push(student);
+			}
+
+			console.log(objectArr);
+
+			let table = document.getElementById('memberInfo');
+			let trs = table.getElementsByTagName('tr');
+			for(let r = 1; r < trs.length; r++){
+				var tr = trs[r];
+				tr.getElementsByClassName('name')[0].innerText = objectArr[r-1]?.name;
+				tr.getElementsByClassName('age')[0].innerText = objectArr[r-1]?.age;
+				tr.getElementsByClassName('addr')[0].innerText = objectArr[r-1]?.addr;
+			}
+		}
+	</script>
+	
+</body>
+</html>
