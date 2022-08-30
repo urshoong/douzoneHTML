@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  <script src = "/js/jquery-3.6.0.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+    <h1>제이쿼리 개요</h1>
+    <h3>jquery란?</h3>
+    <p> 존 레식에 의해 개발된 경량 javascript 라이브러리로 복잡한 javascript코드를 <br>
+        손쉽게 구현하기위해 개발되었다.<br>
+
+        jquery의 장점<br>
+        1. DOM 과 관련된 처리를 쉽게 구현할수 있다 <br>
+        2. ajax 통신, 이벤트, 처리등을 폭넓게 지원한다. <br>
+        3. 별도의 플러그인 을 통해 차트 , 슬라이스 쇼, 테이블등을 간단히 구현할수 있다
+    </p>
+
+    <hr>
+    <h3>제이쿼리 연결 </h3>
+    <p id="p1">1. jquery 홈페이지에서 js 파일을 다운받아 연결하는 방법 </p>
+               2. CDN(Content Delevery Network)를 통한 연결
+
+    <script>
+        $('#p1').css("background","red")
+    </script>
+    <h3>$(document).ready()</h3>
+    <p id = "p2">페이지를 로드한후 ready 메소드를 실행한다. 
+        자바스크립트의 onload 속성과 같은 개념의 메소드
+    </p>
+    <script>
+        jQuery(document).ready(function(){
+            $('#p2').css("background","yellowgreen")
+        })
+
+        $(document).ready(function(){
+            $('#p2').css("background","yellow")
+        })
+
+        $(function(){
+            $('#p2').css("background","red")
+        })
+
+        $("#p2").text("<h1>새롭게 작성된 내용 </h1>")
+        $("#p2").html("<h1>새롭게 작성된 내용 </h1>")
+    </script>
+
+</body>
+</html>

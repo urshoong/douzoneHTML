@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터링메소드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</head>
+<body>
+    <h1>필터링메소드 </h1>
+    <h3>filtering 메소드의 사용법</h3>
+    <p>선택자로 지정한 객체를 기준으로 필터를 사용해서 문서의 객체를 선택 </p>
+    <h4 class="test">test-1</h4>
+    <h4 class="test">test-2</h4>
+    <h4 class="test">test-3</h4>
+    <h4 class="test">test-4</h4>
+    <h4>test-5</h4>
+    <h4 class="test">test-6</h4>
+
+    <script>
+        $(function(){
+            //짝수번째 배경색 컬러 변경 
+            $("h4:even").css("color","white")
+            $("h4:even").css("background","black")
+
+            //filter()
+            $("h4").filter(":even").css({"background":"orange","color":"white"});
+
+            //filter - 함수를 매개변수로
+            $("h4").filter(function(index){
+                return index % 2 == 1
+            }).css({"background":"yellow","color":"black"});
+
+            $("h4").first().css("font-size","1.5em")
+
+            $("h4").last().text("마지막요소")
+
+            $("h4").eq(3).text("eq()로선택")
+
+            $("h4").not(".test").css({"background":"blue","color":"black"});
+        })
+       
+    </script>
+</body>
+</html>

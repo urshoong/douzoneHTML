@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순회(탐색)메소드</title> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .wrap, .wrap * {
+               border: 1px solid lightgray;
+               display: block;
+               padding: 5px;
+               margin: 15px;
+               color: gray;
+           }
+       </style>
+   </head>
+   <body>
+       <h1>순회(탐색)메소드</h1>
+       <h3>sideways 메소드</h3>
+       <div class="wrap">div (parent)
+           <p>p</p>
+           <span>span</span>
+           <h2>h2</h2>
+           <h3>h3</h3>
+           <p>p</p>
+       </div>
+       <script>
+           $(function(){
+               //선택된 요소와 같은레벨에있는요소 리턴
+               $("h2").siblings().css({"color":"red","border":"2px solid red"})
+
+               //인자가있는경우 일치하는 요소리턴
+               $("h2").siblings("p").css({"color":"orange","border":"2px solid orange"})
+
+               //같은레벨중에서 다음 한개요소 리턴
+               $("h2").next().css({"color":"blue","border":"2px solid blue"})
+
+                //같은레벨중에서  다음 모든요소 리턴
+                $("h2").nextAll().css("font-size","2em");
+
+                //같은레벨중에서 다음요소중 인자로 선택된 범위 전까지만 
+                $("h2").nextUntil("p").css("border","dashed");
+
+                $("h2").prev().css({"background":"yellow"})
+
+                $("h2").prevAll().css({"font-size":"4em"})
+
+                $("h2").prevUntil("p").css("border","dashed");
+
+           })
+       </script>
+</body>
+</html>

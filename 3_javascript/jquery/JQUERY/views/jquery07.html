@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순회탐색메소드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .wrap * {
+            border: 1px solid lightgray;
+            display: block;
+            padding: 5px;
+            margin: 15px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>순회(탐색)메소드</h1>
+    <h3>Anestors 메소드</h3>
+    <p>선택된 요소의 상위요소들을 선택할수있는 메소드 </p>
+    <div class="wrap">
+        <div style="width:500px;">div (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li (direct parent)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+
+        <div style="width:500px;">div (grandparent)
+            <p>p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $("span").parent().css({"color":"red","border":"2px solid red"})
+        })
+
+        $(function(){
+            $("span").parents().css({"color":"blue","border":"2px solid blue"})
+        })
+        $(function(){
+            $("span").parentsUntil("div").css({"color":"yellowgreen","border":"2px solid yellowgreen"})
+        })
+
+    </script>
+</body>
+</html>

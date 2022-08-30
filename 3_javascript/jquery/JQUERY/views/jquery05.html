@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수형태의 필터선택자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+    <h1>함수형태의 필터 선택자</h1>
+    <h3>:nth-child() 필터 선택자</h3>
+    <table border="1">
+        <tr><th>이름</th><th>혈액형</th><th>지역</th></tr>
+        <tr><td>유재석</td><td>AAA형</td><td>남양주</td></tr>
+        <tr><td>이효리</td><td>AB형</td><td>안산</td></tr>
+        <tr><td>화   사</td><td>B형</td><td>전주</td></tr>
+        <tr><td>제   시</td><td>B형</td><td>인천</td></tr>
+        <tr><td>엄정화</td><td>A형</td><td>서울</td></tr>
+        <tr><td>김종민</td><td>O형</td><td>수원</td></tr>
+        <tr><td colspan="2">총원</td><td><a>6</a></td></tr>
+    </table>
+    <script>
+
+        $(function(){
+            //n번째에 위치하는 객체 선택 eq(인덱스)
+            $("tr:eq(0)").css({"background":"black","color":"white"})
+
+            //수열번쨰 위치하는 태그 (인덱스 가 아니고 순서로)
+            $("tr:nth-child(2n)").css("background","yellow")
+            $("tr:nth-child(3n)").css("background","red")
+
+            //n번째를 초과하는 객체 선택(인덱스)
+            $("tr:gt(6)").css("background","lightgray")
+
+            //n번째 미만인 객체 선택(인덱스)
+            $("tr:lt(7)").css("font-size","1.5em")
+
+
+            //특정문자열을 포함하는 객체 선택 
+            $("td:contains('A형')").css("color","blue")
+
+            //특정태그를 가지고있는 객체 선택
+            $("td:has(a)").css("color","blue")
+
+            //선택자와 일치하지 않는 객체 
+            $("td:not(:contains('유재석'))").css("color","green")
+
+        })
+    </script>
+</body>
+</html>

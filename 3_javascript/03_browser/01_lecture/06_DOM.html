@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom객체</title>
+    <style>
+        .area {
+        background: lightgray;
+        border: 1px solid black;
+        height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <h1>DOM(Document Object Model)</h1>
+    <p>Html 에있는 태그들을 구조화(트리) 하였을때 각각의 태그를 노드(Node)라고 한다<br>
+        요소노드(Element Node) : 태그 그자체를 의미
+        텍스트노드 (Text Node): 태그에 기록되는 텍스트
+    </p>
+    <h3>텍스트 노드가 존재하는 노드생성(시작태그와 종료 태그가 존재하는 )</h3>
+    <button onclick="test1();">실행확인</button>
+    <div id = "area1" class="area"></div>
+    <script>
+        function test1(){
+            //element생성 : <h3></h3>
+            //elementNode 생성 : document.createElement("태그명");
+            var title = document.createElement("h3");
+
+            //textNode생성 : document.createTextNode("텍스트 문구")
+            var textNode = document.createTextNode("안녕 난 펭수야 ")
+        
+            //노드 연결 : element노드.appendChild(text노드)
+
+            title.appendChild(textNode)
+            document.getElementById("area1").appendChild(title)
+        }
+    </script>
+    
+    <h3>텍스트 노드가 없는 노드생성</h3>
+    <button onclick="test2();">실행확인</button>
+    <div id = "area2" class="area"></div>
+    <script>
+        function test2(){
+            var imgTest = document.createElement("img")
+            imgTest.src = "http://economychosun.com/query/upload/322/20191103221129_fgyjnwts.jpg";//이미지 다른탭으로열어서
+            imgTest.width="150";
+            imgTest.height="100";
+            imgTest.setAttribute("myProperty","123")
+            document.getElementById("area2").appendChild(imgTest)
+        }
+    </script>
+
+    <h3>innerHTML</h3>
+    <button class = "btn3">실행확인</button>
+    <button onclick="test3();">실행확인</button>
+    <div id = "area3" class="area">
+        <table id = "board">
+            <tr>
+                <th>글번호</th>
+                <th>글제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일자</th>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        document.querySelector('.btn3').addEventListener('click',function(){ alert("클래스 접근")})
+
+        function test3(){
+           // var board = document.getElementById("board")
+           var board = document.querySelector("#board > tbody" ) //querySelector css선택자를 이용
+            var num =1;
+            var title = "제목입니다"
+            var user = "user01"
+            var date = new Date()
+            var count = 1
+
+            board.innerHTML +="<tr><td>"+ num
+                            +"</td><td>"+ title
+                            +"</td><td>"+ user
+                            +"</td><td>"+ count
+                            +"</td><td>"+ date.getFullYear()+"-"
+                                        + (date.getMonth()+1)+"-"
+                                        + date.getDate()
+                            +"</td></tr>"
+        }
+    </script>
+
+    <h3>스타일지정</h3>
+    <button onclick="test4();">실행확인</button>
+    <div id = "area4" class="area"></div>
+    <script>
+        function test4(){
+            var area4 = document.getElementById("area4")
+            area4.style.backgroundColor = "orangered"
+            area4.style.borderRadius = "50px"
+            area4.style.transition = "2s"
+        }
+    </script>
+    <h3>노드삭제 </h3>
+    <button onclick="test5();">실행확인</button>
+    <div id = "area5" class="area"></div>
+    <script>
+        function test5(){
+            var area5 = document.getElementById("area5")
+            area5.remove();
+        }
+    </script>
+</body>
+</html>

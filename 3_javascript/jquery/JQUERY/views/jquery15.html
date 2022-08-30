@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트연결메소드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .outer{
+            width: 200px;
+            height: 200px;
+            background: orange;
+            padding: 50px;
+        }
+        .inner{
+            width: 100%;
+            height: 100%;
+            background: red;
+        }
+        .reverse{
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트 연결 메소드</h1>
+    <p>
+        mouseenter : 이벤트 대상에 마우스가 올라오면 발생  (하위요소에 영향받지않음)<br>
+        mouseleave : 이벤트 대상에 마우스가 완전히 벗어나면 발생 (하위요소에 영향받지않음)<br>
+        mouseout : 이벤트 대상에 마우스가 벗어나면 발생 (하위요소에 영향받음)<br>
+        mouseover : 마우스 위치가 요소위에 존재하면 발생 (하위요소에 영향 받음 )
+    </p>
+    <h3>mouseover와 mouseenter</h3>
+    <div class="outer">
+        <div class="inner"></div>
+    </div> 
+
+    <script>
+        $(function(){
+            $(".outer").mouseover(function(){
+                console.log("OVER!!")
+            })
+            $(".outer").mouseenter(function(){
+                console.log("ENTER!!")
+            })
+            $(".outer").mouseout(function(){
+                console.log("OUT!!")
+            })
+            $(".outer").mouseleave(function(){
+                console.log("LEAVE!!")
+            })
+        })
+    </script>
+
+    <h3>키보드이벤트</h3>
+    <p> keydown : 키보드가 눌려질때
+        keypress : 글자가 입력될때 
+        keyup : 키보드가 떼어질때
+    </p>
+
+    <h4>동적으로 글자수 세기</h4>
+    <div>
+        <h1 id="counter">150</h1>
+        <textarea cols="70" rows="5"></textarea>
+    </div>
+
+    <script>
+        $(function(){
+            $("textarea").keydown(function(){
+                var inputLength = $(this).val().length;
+                var remain = 150-inputLength
+
+                $("#counter").html(remain)
+
+                if(remain >= 0){
+                    $("#counter").css("color","black")
+                }else{
+                    $("#counter").css("color","red")
+                }
+            })
+        })
+    </script>
+</body>
+</html>

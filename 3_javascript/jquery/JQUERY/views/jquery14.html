@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #test2{
+            width: 300px;
+            height: 300px;
+            background: orangered;
+        }
+
+        #test3{
+            width: 300px;
+            height: 300px;
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <h3>이벤트관련속성</h3>
+    <button onclick="test1(event)">실행확인</button>
+    <script>
+        function test1(event){
+            console.log(event)
+        }
+    </script>
+
+    <h4> on() : bind()대신에 on()으로 대체</h4>
+    <h4> off() :on() 으로 연결되어있는 이벤트 제거 </h4>
+
+    <div id = "test2">기본상태</div>
+
+    <script>
+        $(function(){
+            $("#test2").on({'mouseenter':function(){
+                    $(this).css("background","yellowgreen").text("마우스 올라감")
+                }, 'mouseleave':function(){
+                    $(this).css("background","yellow").text("마우스 내려감")
+                }, 'click':function(){
+                    $(this).off("mouseenter").off("mouseleave").css("background","orangered").text("기본값")
+                }
+            })
+        })
+    </script>
+    <br>
+    <div id = "test3">기본상태</div>
+    <script>
+        $(function(){
+            $("#test3").on("click",{name:"유재석", age:12},function(event){
+                alert(event.data.name + "님 환영합니다. ")
+            })
+        })
+    </script>
+
+
+    <div id = "wrap">
+        <h2>header</h2>
+    </div>
+    <script>
+       /* $(function(){
+            $("h2").on('click',function(){
+                $("#wrap").append("<h2>header</h2>")
+            })
+        })*/
+
+        $(document).on('click','h2',function(){
+            var length = $("h2").length
+            var targetHTML = $(this).html();
+
+            console.log(length)
+            console.log(targetHTML)
+            $("#wrap").append("<h2>"+targetHTML+"-"+length+"</h2>")
+
+        })
+    </script>
+
+    <h3>one()</h3>
+    <p>이벤트를 한번만연결할때 사용한다.</p>
+    <h1 id = "test4">클릭하세요</h1>
+    <script>
+        $(function(){
+            $("#test4").one("click",function(){
+                alert("이벤트 발생" )
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체배열</title>
+    <style> 
+        .area{
+            background: lightgray;
+            border: 1px solid black;
+            height: 250px;
+        }
+    </style> 
+</head>
+<body>
+    <h1>객체배열</h1>
+    <button onclick="test1();">실행확인</button>
+    <div id = "area1" class="area"></div>
+    <script>
+        function test1(){
+            var student0 = {
+                name:"유재석",
+                java:90,
+                oracle:56,
+                HTML5:30,
+                CSS:44,
+                javascript:23
+            }
+
+            var student1 = {
+                name:"이효리",
+                java:100,
+                oracle:56,
+                HTML5:30,
+                CSS:44,
+                javascript:93
+            }
+
+            var student2 = {
+                name:"정지훈",
+                java:100,
+                oracle:100,
+                HTML5:100,
+                CSS:100,
+                javascript:100
+            }
+
+            var students = [];
+            students.push(student0)
+            students.push(student1)
+            students.push(student2)
+
+            console.log(students)
+
+            for(var i = 0; i< students.length ; i++){
+                students[i].getSum = function(){
+                    return this.java + this.oracle + this.HTML5+ this.CSS +this.javascript;
+                }
+
+                students[i].getAvg = function(){
+                    return this.getSum()/5
+                }
+            }
+
+            for(var i in students){
+                console.log(students[i])
+                with(students[i]){
+                    document.getElementById("area1").innerHTML 
+                    += "이름 : "+ name +", 총점 : " + getSum() + ", 평균 : "+ getAvg() + "<br>"
+                }
+            }
+
+        }
+    </script>
+
+    <h3>생성자 함수</h3>
+    <p>new 키워드를 이용해 객체를 생성할수 있는 함수를 의미한다.</p>
+    <button onclick="test2();">실행확인</button>
+    <div id = "area2" class="area"></div>
+    <script>
+      /*  function Student(name, java, oracle, html, css, javascript){
+
+            this.name = name;
+            this.java = java;
+            this.oracle = oracle;
+            this.html = html;
+            this.css = css;
+            this.javascript = javascript;
+
+
+            this.getSum = function(){
+                return this.java + this.oracle + this.html+ this.css +this.javascript;
+            }
+
+            this.getAvg = function(){
+                return this.getSum()/5
+            }
+
+            this.toString = function(){
+                return "이름 : "+ this.name+ 
+                       ", 총점 :"+ this.getSum()+
+                       ", 평균 :"+ this.getAvg()+ "<br>"
+            }
+        }
+*/
+        //ES6 class활용
+        class Student{
+            constructor(name, java, oracle, html, css, javascript){
+                this.name = name;
+                this.java = java;
+                this.oracle = oracle;
+                this.html = html;
+                this.css = css;
+                this.javascript = javascript;
+
+
+                this.getSum = function(){
+                    return this.java + this.oracle + this.html+ this.css +this.javascript;
+                }
+
+                this.getAvg = function(){
+                    return this.getSum()/5
+                }
+
+                this.toString = function(){
+                    return "이름 : "+ this.name+ 
+                        ", 총점 :"+ this.getSum()+
+                        ", 평균 :"+ this.getAvg()+ "<br>"
+                }
+            }
+        }
+        function test2(){
+            var student = new Student(prompt('이름을 입력하세요 '),
+                                    parseInt(prompt('자바점수를 입력하세요')),
+                                    parseInt(prompt('오라클 점수를 입력하세요')),
+                                    parseInt(prompt('html 점수를 입력하세요')),
+                                    parseInt(prompt('css 점수를 입력하세요')),
+                                    parseInt(prompt('javascript 점수를 입력하세요'))
+                                
+                            );
+                       
+            console.log(student);
+
+            var area2 = document.getElementById("area2")
+            area2.innerHTML = student
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>effect 메소드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.2.0.js" integrity="sha256-gvMJWDHjgDrVSiN6eBI9h7dRfQmsTTsGU/eTT8vpzNg=" crossorigin="anonymous"></script>
+    <style>
+        .test1{
+            width: 200px;
+            height: 200px;
+            background: orangered;
+        }
+
+        .test2{
+            width: 50px;
+            height: 50px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Effect 메소드</h1>
+    <p>페이지에 애니메이션 효과를 만들기위한 메소드 집합
+    </p>
+    <h3>animate()메소드</h3>
+    <div id = "test1" class="test1"></div>
+    <button id = "btn1">animate적용</button>
+    <script>
+        $(function(){
+            $('#btn1').click(function(){
+                $("#test1").animate({width:"500px", backgroundColor:"blue"},3000,function(){
+                    alert("애니메이션 적용완료")
+                })
+            })
+        })
+    </script>
+</body>
+</html>
