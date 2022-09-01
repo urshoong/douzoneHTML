@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Select Change Background</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : 2번째 div (인덱스 1)
@@ -8,7 +9,7 @@
 	 * 함수 : eq(), css()
 	 */
 	function run() {
-		
+		$(".target").eq(1).css('background-color','yellow');
 	}
 </script>
 

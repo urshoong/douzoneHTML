@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Change Size</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div
@@ -8,7 +9,8 @@
 	 * 함수 : css() / width(), height()
 	 */
 	function run() {
-
+		let div = $("#target");
+		div.css({'width':div.width()*2,'height':div.height()*2});
 	}
 </script>
 

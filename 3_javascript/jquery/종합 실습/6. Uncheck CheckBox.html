@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Uncheck CheckBox</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div 내부 CheckBox
@@ -8,7 +9,7 @@
 	 * 함수 : removeAttr() or attr()
 	 */
 	function run() {
-		
+		$(".target input[type=checkbox]").removeAttr('checked');
 	}
 </script>
 

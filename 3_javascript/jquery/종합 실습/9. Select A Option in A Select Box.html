@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Select A Option in A Select Box</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div 내부 select
@@ -8,7 +9,7 @@
 	 * 함수 : attr(), last()
 	 */
 	function run() {
-		
+		$("#target select option").last().attr('selected', 'selected');
 	}
 </script>
 

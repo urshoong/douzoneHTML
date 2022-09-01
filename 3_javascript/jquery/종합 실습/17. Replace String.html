@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Replace String</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div text
@@ -8,7 +9,8 @@
 	 * 함수 : text(), html(), replace(), 정규식(/cat/g) or split(), join()
 	 */
 	function run() {
-
+		let target = $("#target");
+		target.html(target.html().replace(/cat/gm, 'dog'));
 	}
 </script>
 

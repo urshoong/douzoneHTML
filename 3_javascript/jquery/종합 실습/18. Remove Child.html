@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Remove Child</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div children
@@ -8,7 +9,7 @@
 	 * 함수 : children(), not(), remove()
 	 */
 	function run() {
-		
+		$("#target").children().not('h2').remove();
 	}
 </script>
 

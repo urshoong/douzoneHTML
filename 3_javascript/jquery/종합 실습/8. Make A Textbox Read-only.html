@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Make A Textbox Read-only</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div 내부 input
@@ -8,7 +9,7 @@
 	 * 함수 : attr() or prop()
 	 */
 	function run() {
-		
+		$("#target input").prop('readonly', true);
 	}
 </script>
 

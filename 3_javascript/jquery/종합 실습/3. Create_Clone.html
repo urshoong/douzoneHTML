@@ -1,6 +1,7 @@
 ﻿<html>
 <head>
 <title>Create Clone</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	/**
 	 * 대상 : div
@@ -8,7 +9,9 @@
 	 * 함수 : clone(), insertAfter()
 	 */
 	function run() {
-		
+		let target = $("#target");
+		let span = target.find("span:first-of-type").clone();
+		span.insertAfter(target.find('span:last-of-type'));
 	}
 </script>
 
