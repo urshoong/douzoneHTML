@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-1-before</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let len = $("#number").children().length;
+            console.log("length : " + len);
+            $(document).on('mouseenter', '#number', function(){
+                $(this).children().each(function(){
+                    console.log($(this).attr('class'));
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul id="number">
+        <li class="n1">1</li>
+        <li class="n2">2</li>
+        <li class="n3">3</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-1</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("select").on('change', function(){
+                let text = $(this).find('option:selected').text();
+                $("#selNum").text(text.indexOf('=') > -1 ? '' : text);
+            });
+        });
+    </script>
+</head>
+<body>
+    <select name="number">
+        <option value="">== 선택 ==</option>
+        <option value="1">1번</option>
+        <option value="2">2번</option>
+        <option value="3">3번</option>
+        <option value="4">4번</option>
+    </select>
+    <span id="selNum"></span>
+</body>
+</html>

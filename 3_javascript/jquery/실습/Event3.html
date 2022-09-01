@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-3</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("table tr:not(:eq(0))").on('click', function(){
+                let tr = $(this);
+
+                $("td").css('background-color','');
+
+                for(let i = 0; i < 4; i++){
+                    let td = tr.find('td:eq('+i+')');
+                    td.css('background-color','red');
+                    $("#s"+(i+1)).text(td.text());
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>작성일자</th>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3번제목</td>
+            <td>0</td>
+            <td>11-07-13</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2번 제목</td>
+            <td>0</td>
+            <td>11-07-12</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1번 제목</td>
+            <td>0</td>
+            <td>11-07-11</td>
+        </tr>
+    </table>
+    선택된 행 : 
+    <span id="s1"></span> / <span id="s2"></span> / <span id="s3"></span> / <span id="s4"></span>
+</body>
+</html>

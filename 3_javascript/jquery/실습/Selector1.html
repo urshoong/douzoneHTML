@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-1</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("h1").eq(0).css('color','red');
+            $("#text").css('color','orange');
+            $("h1[name=text]").css('color','yellow');
+            $(".text").css('color','green');
+        });
+    </script>
+</head>
+<body>
+    <h1>text</h1>
+    <h1 id="text">text2</h1>
+    <h1 name="text">text3</h1>
+    <h1 class="text">text4</h1>
+</body>
+</html>
