@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .wrap{
+            width: 650px;
+            height: 450px;
+            background-color: rgb(72, 156, 193);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content{
+            width: 500px;
+            height: 350px;
+            background-color: white;
+            
+        }
+
+        .titleArea{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+
+
+        const element = (
+			<>
+				<div class='wrap'>
+                    <div class='content'>
+                        <div class='titleArea'>
+                            <span class='title'>TODOLIST</span>
+                        </div>
+                    </div>
+                </div>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>
