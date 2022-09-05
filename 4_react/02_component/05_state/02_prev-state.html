@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!--(previous: 이전 의약자)
+        prevState  활용한 setState 함수 사용
+        this.setState를 사용할 시 상태가 비동기방식으로 업데이트 된다.
+        하나의 이벤트 핸들러에서 여러 번 setState를 호출한다고 해도 동기적으로 누적해서 state가 갱신되지 않는다.
+        이 때 해결할 수 있는 방법은 변경할 state 객체 대신 함수를 인자로 전달하는 것이다.
+        전달하는 콜백 함수의 첫 번째 인자는 이전 상태값을 가리키는 prevState이며, 두 번째 인자는 현재 가지는 props이다.
+        만약 props가 필요하지 않은 상황이라면 생략하는 것도 가능하다.
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        class Counter extends React.Component{
+            //props를 안쓰기 때문에 생성자를 새성할 필요가 없다
+            //this는 인스턴스를 생성한 후 해당 인스턴스에 값을 보관할 경우에 사용하기 때문에 this 사용하지 않음
+            state ={
+                number : 0
+            };
+
+            render(){
+                const {number} = this.state;
+
+                return(
+                    <>
+                        <h1 style={(number < 0) ? {color:'red'} : {color:'blue'}}>Counter : {number}</h1>
+                        <button onClick={() => this.setState({number: number - 1})}>-1</button>
+                        <button onClick={() => {
+                            //비동기 방식으로 state를 업데이트 하기 때문에 상태는 변경하지만 반영되는 상태는 아니다.
+                            // console.log(`befire bynber : ${number}`);
+                            // this.setState({number: number + 1});
+                            // console.log(`after number : ${number}`);
+
+                            // this.setState({number : this.state.number + 1});
+                            // console.log(`final number : ${this.state.number}`);
+                            
+                            console.log(`befire nunber : ${number}`);
+                            this.setState((prevState, props) => {
+                                console.log(`befire nunber : ${number}`);
+                                return {
+                                    number : prevState.number + 1
+                                }
+                            });
+                            console.log(`after number : ${number}`);
+                            //({number : prevState.number = 1}) 객체 리턴 시 소괄호로 코드 블럭이 아님을 명시
+                            this.setState(prevState => ({number : prevState.number + 1}))
+                            console.log(`final number : ${this.state.number}`);
+                        }}>+1</button>
+                    </>
+                );
+            }
+        }
+
+        const element = (
+			<>
+				<Counter/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

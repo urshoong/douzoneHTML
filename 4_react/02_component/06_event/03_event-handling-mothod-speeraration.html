@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+        //https://ko.reactjs.org/docs/forms.html
+        class EventComponent extends React.Component {
+            constructor(props){
+                super(props);
+
+                this.state = {
+                    message : ''
+                };
+
+                //render 시 this를 잃어버리기 때문에 this를 바인드 해줘야 한다
+                this.onChangeHandler = this.onChangeHandler.bind(this);
+                this.onClickHandler = this.onClickHandler.bind(this);
+            }
+
+            onChangeHandler(e){
+                console.log(this)
+                this.setState({
+                    message : e.target.value
+                })
+            }
+
+            onClickHandler(e){
+                this.setState({
+                    message : ''
+                })
+            }
+
+
+            render(){
+                return(
+                    <>
+                        <h1>이벤트핸들링</h1>
+
+                        <input 
+                            type='text'
+                            name='message'
+                            placeholder='텍스트를 입력해주세요'
+                            onChange={this.onChangeHandler}
+                            value={this.state.message}
+                        />
+                        
+                        <button onClick={this.onClickHandler}>확인</button>
+
+                        <h3>{this.state.message}</h3>
+                    </>
+                )
+            }
+        }
+
+        const element = (
+			<>
+				<EventComponent/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

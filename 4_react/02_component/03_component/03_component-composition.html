@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- 
+        컴포넌트 합성(composition)
+        컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있다.
+        컴포넌트는 재사용 가능한 크기로 작게 유지해야 하며, 순수 함수처럼 작성되어야 한다.
+     -->
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const user = {
+             name: '홍길동',
+             age: 20,
+             phone: '010-1234-5678',
+             email: 'hong123@gmail.com'
+        }
+
+        function NameCard(){
+            return <h1>{user.name}</h1>
+        }
+        function AgeCard(){
+            return <h2 style={{color:'orangered'}}>{user.age}</h2>
+        }
+        function PhoneCard(){
+            return <h3 style={{color:'blue'}}>{user.phone}</h3>
+        }
+        function EmailCard(){
+            return <h3 style={{backgroundColor:'yellow'}}>{user.email}</h3>
+        }
+
+        function UserInfo(){
+            return
+                <div style={{width: 300, border: '1px solid black'}}>
+                    <NameCard/>
+                    <AgeCard/>
+                    <PhoneCard/>
+                    <EmailCard/>
+                </div>                
+        }
+
+		ReactDOM.render(<UserInfo/>, root);
+    </script>
+
+</body>
+</html>

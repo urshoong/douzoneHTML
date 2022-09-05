@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <!-- 
+        리엑트에서 정의하는 컴포넌트 종류는 함수형 컴포넌트, 클래스형 컴포넌트 2가지
+        https://ko.reactjs.org/docs/components-and-props.html
+     -->
+     <div id="root"></div>
+    <script>
+        /* 2013년 리액트가 처음 등장했을 때 컴포넌트를 유일하게 만드는 방법이 createClass 함수를 사용하는 것이었다.
+        * 리액트 16(2017년 9월)부터 공식적으로 사용이 금지되었다.
+        * 과거에 만들던 방식 : */
+        // const HelloWorldText = React.createClass({//createClass 는 객체형태로 값전달 
+        //     displayName: 'helloworld', // 보여질 이름 , 컴포넌트
+        //     render() {//실제 보여질내용을 render 함수에 작성  
+        //         return React.createElement( //return 으로 엘리먼트 반환 
+        //             'h1',
+        //             {className: 'greeting'},
+        //             'Hello World!'
+        //         );
+        //     }
+        // });
+
+        //ES2015 (ES6) 클래스 문법이 도입되면서 리엑트에도 리액트 컴포넌트 만드는 새로운 방법이 도입.
+        /* 
+        class Helloworld extends React.Component{
+            render(){
+                return React.createElement(
+                    'h1',
+                    {className: 'greeting'},
+                    'Hello World'
+                );
+            }
+        }
+
+        ReactDOM.render(React.createElement(Helloworld), document.getElementById('root'))
+        */
+        //함수형 컴포넌트 : 리액트 16 버전 이후 추가, 현재는 함수형 컴포넌트 생성방법을 주로 사용
+
+        function Helloworld(){
+            return React.createElement(
+                'h1',
+                {className: 'greeting'},
+                'Hello World!'
+            );
+        }
+
+        // ReactDOM.render(React.createElement(Helloworld), document.getElementById('root')) //v17
+        ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(Helloworld)) //v18
+
+    </script>
+</body>
+</html>

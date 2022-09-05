@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- porps 에 전달되는 타입 검증 //https://www.npmjs.com/package/prop-types 
+                                    //https://github.com/facebook/prop-types
+    -->
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        function PropsVerify({name, favoriteNumber, children}){
+            return (
+                <>
+                    <h1>제 이름은 {name} 입니다</h1>
+                    <h1>제가 가장 좋아하는 숫자는 {favoriteNumber} 입니다</h1>
+                    <h1>제가 가지고 있는 children 은 {children} 입니다</h1>
+                </>
+            )
+        }
+        PropsVerify.propTypes = {
+            name: PropTypes.string,
+            favoriteNumber: PropTypes.number.isRequired
+        }
+
+        const element = (
+			<>
+                <PropsVerify name='홍길동' favoriteNumber={5}>텍스트노드</PropsVerify>
+                
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

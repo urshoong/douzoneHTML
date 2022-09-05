@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        class Light extends React.Component{
+            state = {
+                isOn : false
+            };
+
+            render(){
+                const {isOn} = this.state;
+
+                const style = {
+                    width : 200,
+                    height : 200,
+                    backgroundColor : isOn ? 'green' : 'red',
+                    transition: '.5s'
+                }
+
+                return (
+                    <>
+                        <div style={style}></div>
+                        <button onClick={() => this.setState(prevState => ({isOn : !prevState.isOn}))}>{isOn ? 'OFF' : 'ON'}</button>
+                        <button onClick={() => this.setState(
+                            {isOn : !isOn}, 
+                            () => console.log(isOn ? '불이 꺼졌습니다' : '불이 켜졌습니다')//setState 동작 직후 실행할 콜백함수를 두번째 인자로 전달
+                        )}>{isOn ? 'OFF' : 'ON'}</button>
+                    </>
+                )
+            };
+        }
+
+        const element = (
+			<>
+				<Light/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

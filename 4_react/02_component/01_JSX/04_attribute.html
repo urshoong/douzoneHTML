@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        .light{
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        attribute: html의 속성
+        <h1 id='test'></h1> 일때 id
+
+        property: javascript 의 속성 
+        {
+            name : 'gildong'
+        }
+
+       
+        JSX를 이용해 엘리먼트를 정의할 시 attribute(html의속성)도 정의할 수 있다.
+        attribute를 정의할 시 주의할 사항이 있다.
+        JSX는 html 태그처럼 보이지만 실제로는 자바스크립트이다. (React.createElement를 호출하는 코드로 컴파일된다.)
+        따라서 자바스크립트의 예약어와 동일한 이름의 attribute는 다른 이름으로 우회적으로 사용하도록 정의되어 있다.
+     
+        예) class는 자바스크립트의 예약어이다. 엘리먼트의 class속성을 부여할 때 자바스크립트 문법에서는 사전 정의된 키워드 이기 때문에
+            className이라는 속성으로 사용해야 한다.
+      
+        JSX문법에서 속성값을 부여하는 방식은 두 가지로 나뉜다. 
+        1. 문자열로 속성값을 정의하는 방식
+        2. JavaScript 표현식({})을 이용하여 정의하는 방식
+     -->
+    <!--   https://www.w3bai.com/ko/js/js_reserved.html - 예약어-->
+    
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const root = document.getElementById('root');
+
+        //1. 문자열로 속성값 정의하는 방법
+        // const element = <h1 id="title" className="light">Hello World~</h1>;
+
+        //2. JavaScript 표현식({})을 이용하여 정의하는 방법
+        const id = 'title';
+        const className = 'light';
+        const element = <h1 id={id} className={className}>Hello World~~</h1>;
+
+        ReactDOM.render(element, root);
+    </script>
+</body>
+</html>

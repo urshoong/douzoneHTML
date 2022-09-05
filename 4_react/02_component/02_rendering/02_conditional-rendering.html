@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- 조건부 랜더링 : 여러 엘리먼트 중 특정 조건에 따라 하나의 엘리먼트만 렌더링 -->
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const answer = parseInt(window.prompt('리액트가 재미있나요?\n1.재미있다\n2.어렵다'));
+        //1. 랜더링 시 조건 비교 후 조건부 랜더링
+        const positiveElement = <h1>앞으로 재미있어 질 거에요</h1>;
+        const negativeElement = <h1>천천히 앞에서부터 복습해보세요</h1>;
+
+		
+		// ReactDOM.render(answer === 1 ? positiveElement : negativeElement, root);
+
+
+        //2. JSX 내에서 조건부로 앨리먼트 생성하기
+        let element;
+        // if(answer === 1){
+        //     element = <h1>앞으로 재미있어 질 거에요.</h1>;
+        // }else{
+        //     element = <h1>천천히 앞에서부터 복습해보세요.</h1>;
+        // }
+
+        //2-2. 삼항연산자 더 자주 사용
+        // element = answer === 1 ? <h1>앞으로 재미있어 질 거에요.</h1> : <h1>천천히 앞에서부터 복습해보세요.</h1>;
+
+        //2-3. && 연산자를 이용, 짧은조건식 사용
+        //- 특정 조건을 만족하는 경우에만 랜더링 하고 싶은 경우 사용, 그렇지 않은 경우는 아무것도 보여지지 않게 할 때
+
+        //const element answer === 1 ? <h1>앞으로 재미있어 질 거에요.</h1> : null;
+        element = (answer === 1) && <h1>앞으로 재미있어 질 거에요.</h1>;
+        ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>
