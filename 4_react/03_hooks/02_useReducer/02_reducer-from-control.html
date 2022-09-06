@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const {useReducer} = React;
+
+        function reducer(state, action){
+            return {
+                ...state,
+                [action.name] : action.value
+            }
+        }
+
+        function RegistForm(){
+
+            const [state, dispatch] = useReducer(reducer, {name: '', nickname: ''});
+
+            //구조분해할당
+            const {name, nickname} = state;
+
+            const onChangeHandler = e => dispatch(e.target);
+
+            return(
+                <>
+                    <label>이름 : </label>
+                    <input type="text" name="name" value={name} onChange={onChangeHandler}/>
+                    <br/>
+                    <label>닉네임 : </label>
+                    <input type="text" name="nickname" value={nickname} onChange={onChangeHandler}/>
+                    <br/>
+                    <div>
+                        <h3>입력한이름 : {name}</h3>
+                        <h3>입력한닉네임 : {nickname}</h3>
+                    </div>
+                </>
+            )
+        }
+
+        const element = (
+			<>
+                <RegistForm/>    
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const {useState, useEffect} = React;
+
+        function LoginForm(){
+            const[user, setUser] = useState({
+                username: '',
+                password: ''
+            });
+
+            const onChangeHandler = (e) => {
+                setUser({
+                    ...user,
+                    [e.target.name]: e.target.value
+                })
+            }
+
+            //동작하기 전 변경전값과 후의 값을 비교해서일치하면 호출을 건너띈다
+            //업데이트시와, 최초 마운트 시점에 동작
+            useEffect(
+                () => {
+                    console.log('username update')
+                },
+                [user.username]
+            )
+
+            useEffect(
+                () => {
+                    console.log('password update')
+                },
+                [user.password]
+            )
+
+            return(
+                <>
+                    <label>username : </label>
+                    <input type="text" name="username" onChange={onChangeHandler}/><br/>
+                    <label>password : </label>
+                    <input type="password" name="password" onChange={onChangeHandler}/><br/>
+
+                    <h3>username : {user.username}</h3>
+                    <h3>password : {user.password}</h3>
+                </>
+            )
+        }
+
+        const element = (
+			<>
+                <LoginForm/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

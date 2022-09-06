@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- 
+        useReducer는 다양한 컴포넌트의 state를 업데이트 할 때 사용하는 Hook이다.
+        리듀서는 새로운 상태를 만들 때 반드시 불변성을 지켜주어야 한다. (기존 state의 값 변경 하지 말고 새롭게 만들 것)
+        리듀서를 사용했을 때 가장 큰 장점은 컴포넌트 업데이트 로직을 컴포넌트 밖으로 분리할 수 있다는 점이다.
+     -->
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const {useState, useReducer} = React;
+
+        //리듀서 함수의 첫번째 인자 : 기존상태값, 두번째 인자 : 업데이트를 하기위해 필요한 정보를 담은 객체
+        function reducer(state, action){
+            switch(action.type){
+                case 'DECREMENT':
+                    return { value : state.value - 1 };
+                case 'INCREMENT':
+                    return { value : state.value + 1 };
+                default:
+                    return state;
+            }
+        }
+
+        function Counter(){
+            
+            //useReducer 함수의 첫번째 인자 : 리듀서 함수 (state를 변경하고자 하는 로직을 함수 단위로 넣음)
+            //두번째 인자 : 해당 리듀서의 초기값
+
+            //state : 현재 상태
+            //dispatch : 액션을 발생시킬 함수
+            const [state, dispatch] = useReducer(reducer, {value : 0});
+
+            return(
+                <>
+                    <h1>count : {state.value}</h1>
+                    <button onClick={() => dispatch({ type: 'DECREMENT' })}> - 1 </button>
+                    <button onClick={() => dispatch({ type: 'INCREMENT' })}> + 1 </button>
+                </>
+            )
+        }
+
+        const element = (
+			<>
+                <Counter/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

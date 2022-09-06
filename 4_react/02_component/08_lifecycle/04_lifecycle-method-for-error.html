@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        class ErrorBoundery extends React.Component{
+
+            constructor(props){
+                super(props);
+                this.state = {
+                    hasError: false
+                }
+            }
+
+            //자손 컴포넌트에서 오류 발생 시 자동으로 호출된다
+            static getDerivedStateFromError(error){
+                console.log('getDerivedStateFromError')
+                return {hasError: true}
+            }
+
+            //커밋한 후 실행되는 메소드
+            //로그를 남기는 등의 작업 용도
+            componentDidCatch(error, info){
+                //error: 발생한 오류
+                //info : 어떤 컴포넌트가 오류를 발생시켰는지에 대한 정보를 포함한 객체
+                console.log('componentDidCatch')
+                console.log({error, info})
+            }
+
+            render(){
+                if(this.state.hasError){
+                    return(
+                        <>
+                            <h1>에러가 발생했습니다</h1>
+                        </>
+                    )
+                }
+
+                return this.props.children;
+            }
+        }
+
+        class TimerPrinter extends React.Component{
+
+            state = {
+                now: new Date().toLocaleTimeString()
+            }
+
+            render(){
+                console.log('render')
+                return(
+                    <>
+                        <button
+                            onClick={() => this.setState({now: new Date().toLocaleTimeString()})}
+                        >현재시간확인하기</button>
+
+                        <h1>{this.state2.now}</h1>
+                    </>
+                )
+            }
+        }
+
+        class App extends React.Component{
+            render(){
+                return(
+                    <>
+                        <ErrorBoundery>
+                            <TimerPrinter/>
+                        </ErrorBoundery>
+                    </>
+                )
+            }
+        }
+
+        const element = (
+			<>
+                <App/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

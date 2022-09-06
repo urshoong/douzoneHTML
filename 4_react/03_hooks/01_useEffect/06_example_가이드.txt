@@ -1,0 +1,68 @@
+function TypingGame({ text, isDone, setIsDone }) {
+
+	const [input, setInput] = useState('');
+
+	useEffect(
+		() => {
+			const start = new Date().getTime();
+
+			return () => {
+				const end = new Date().getTime();
+
+				const interval = end - start;
+
+				alert(`${ interval } (ms)`);
+			}
+		},
+		[]
+	);
+
+	const onKeyPressHandler = (e) => {
+		if(e.key == 'Enter') {
+			console.log(text);
+			console.log(input);
+			if(text === input) {
+				setIsDone(!isDone);
+			}
+		}
+	}
+
+	return (
+		<>
+			<h1>{ text }</h1>
+			<input 
+				type="text" 
+				onChange={ (e) => setInput(e.target.value) } 
+				onKeyPress={ onKeyPressHandler }
+				value={ input }
+			/>
+		</>
+	);
+}
+
+
+function App() {
+            
+	const [isShow, setIsShow] = useState(false);
+	const [isDone, setIsDone] = useState(false);
+	const [text, setText] = useState('');
+
+	useEffect(                () => {
+			setText(prompt('문자열을 입력해주세요'));
+		},
+		[]
+	);
+	
+	useEffect(                () => {
+			setIsShow(!isShow);
+		},
+		[isDone]
+	);
+
+	return (                <>
+			{ isShow && <TypingGame text={ text } isDone={ isDone } setIsDone={ setIsDone }/> }
+		</>
+	);
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));

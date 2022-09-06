@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const {useState, useEffect} = React;
+
+        // function TypingGame(props){
+        function TypingGame({text, isDone, setIsDone}){
+            const timer1 = new Date();
+            useEffect(() => {
+                const input = document.getElementById('input');
+                input.focus();
+                return() => {
+                    const timer2 = new Date();
+                    alert((timer2 - timer1) + '(ms)');
+                }
+            },[]);
+
+            const onKeyPressHandler = e => {
+                if(e.key === 'Enter'){
+                    if(text === input.value){
+                        setIsDone(true);
+                    }
+                }
+            }
+
+            return(
+                <>
+                    <h1>{text}</h1>
+                    <input type="text" name="input" id="input" onKeyPress={onKeyPressHandler}/>
+                </>
+            )
+
+        }
+
+         function App() {
+            
+            const [isShow, setIsShow] = useState(false);
+            const [isDone, setIsDone] = useState(false);
+            const [text, setText] = useState('');
+
+            useEffect(() => {
+                setText(prompt('문자열을 입력해주세요'));
+            },[]);
+            
+            useEffect(() => {
+                setIsShow(!isShow);
+            },[isDone]);
+
+            return (
+                <>
+                    { isShow && <TypingGame text={ text } isDone={ isDone } setIsDone={ setIsDone }/> }
+                </>
+            );
+        }
+
+        ReactDOM.render(<App/>, document.getElementById('root'));
+
+        const element = (
+			<>
+                <App/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        const {useState, useEffect} = React;
+
+        function TimerPrinter(){
+            const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+            useEffect(
+                // () => {console.log('useEffect확인');}
+
+                //마운트 시점에만 동작하게 하기 위해 디펜던시 리스트(의존성 배열)에 빈배열을 넣어준다.
+                () => { console.log('마운트 시점에만 동작함') },
+                []
+            );
+
+            return(
+                <>
+                    <button onClick={() => setTime(new Date().toLocaleTimeString())}>현재시간확인하기</button>
+                    <h1>{time}</h1>
+                </>
+            )
+        }
+
+        const element = (
+			<>
+                <TimerPrinter/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

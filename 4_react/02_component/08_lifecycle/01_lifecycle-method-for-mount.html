@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!--
+        컴포넌트의 라이프 사이클 메소드는 총 9가지가 있다. 
+        라이프사이클은 총 3가지 카테고리인 마운트, 업데이트, 언마운트로 나뉜다.
+        마운트 : DOM이 생성되고 웹 브라우저상 나타나는 것, 최초로 랜더링되는것 을 마운트(Mount)라고 한다.
+        업데이트 : 컴포넌트의 상태가 바뀌는 경우를 의미하며, 총 4가지의 업데이트 상황이 있다.
+                  props변경, state변경, 부모 컴포넌트 리랜더링, this.forceUpdate로 강제 랜더링 
+        언마운트 : 컴포넌트를 DOM에서 제거하는 것을 언마운트(UnMount)라고 한다.
+
+        생명주기 도표 : https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+        생명주기 API 레퍼런스 : https://ko.reactjs.org/docs/react-component.html
+
+        마운트 시 constructor -> getDerivedStateFromProps -> render -> componentDidMount 순으로 호출이 된다.
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+		const root = document.getElementById('root');
+
+        //생명주기 메소드는 클래스형 컴포넌트에서만 사용가능
+        class Greeting extends React.Component{
+            //1. 컴포넌트를 새로 만들때마다 호출되는 생성자 메소드
+            constructor(props){
+                super(props);
+
+                console.log('constructor')
+
+                this.state = {
+                    text: ''
+                }
+            }
+
+            //2. props에 있는 값을 state에 넣을때 사용하는 메소드
+            static getDerivedStateFromProps(nextProps, prevState){
+                console.log('getDerivedStateFromProps')
+                console.log(nextProps)
+                console.log(prevState)
+
+                if(nextProps.text !== prevState.text){
+                    return {text: nextProps.text}
+                }
+
+                return null;//state를 변경할 필요가 없다면 null을 반환
+            }
+
+            //3. 리엑트 엘리먼트를 랜더 트리 형태로 구성하는 시점에 호출되는 메소드
+            render(){
+                /* 랜더링될 컴포넌트의 형태를 리액트 컴포넌트로 반환한다.
+                 * 라이프 사이클 메소드 중 유일한 필수 메소드이다.
+                 * render 메소드는 this.props와 this.state에 접근할 수 있다.
+                 * 아무런 컴포넌트도 보여주고 싶지 않다면 null 혹은 falsy 값을 반환하도록 한다.
+                 * 
+                 * 주의사항
+                 * 이 메소드 내에서는 이벤트 설정이 아닌 곳에서 setState를 사용하면 안된다. 
+                 * 또한 브라우저의 DOM에 접근해서도 안된다.
+                 * DOM 정보를 가지고 오거나 state에 변화를 줄 때 componentDidMount에서 처리해야 한다.
+                 * */
+                console.log('render')
+                return(
+                    <>
+                        <h1>hello world, {this.state.text}</h1>
+                    </>
+                )
+            }
+
+            //4. 컴포넌트가 웹브러우저상 나타난 후 호출되는 메소드
+            componentDidMount(){
+                console.log('componentDidMount')
+            }
+        }
+
+        const element = (
+			<>
+                <Greeting text='홍길동'/>
+			</>
+		);
+		
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>
