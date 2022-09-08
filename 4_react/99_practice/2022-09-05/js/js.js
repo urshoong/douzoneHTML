@@ -13,8 +13,6 @@ function TODOList(){
     }
 
     const [list, setList] = useState([]);
-    const [clone, setClone] = useState();
-    const [editor, setEditor] = useState();
 
     const max = list.reduce((pre, cur) => pre = cur.id, 0);
     
@@ -85,45 +83,23 @@ function TODOList(){
         const icon = e.target;
         const id = icon.id;
         const classList = icon.classList;
-        const target = document.querySelectorAll('#span'+id)[0];
-        // const clone = target.cloneNode('deep');
-        // console.log(clone);
-        if(!clone) setClone(target);
-
-        console.log(editor);
-        if(!editor){
-            console.log('create editor');
-            const createEditor = document.createElement('input');
-            createEditor.classList = 'createEditor';
-            createEditor.style.width = '100%';
-            createEditor.style.outline = 'rgb(72, 156, 193)';
-            createEditor.style.border = '1px solid rgb(72, 156, 193)';
-            setEditor(createEditor);
-            console.log(editor);
-        }
-        
+        const view = document.querySelector('#span'+id);
+        const edit = document.querySelector('#input'+id);
+        const check = document.querySelector('#check'+id);
         if([].includes.call(classList, 'fa-pen')){
-            console.log('edit');
             classList.remove('fa-pen');
             classList.add('fa-floppy-disk');
-
-            console.log(editor);
-            const copy = editor.cloneNode();
-            editor.value = target.innerText;
-            target.replaceWith(editor);
-
+            edit.value = view.innerText;
+            view.style.display = 'none';
+            edit.style.display = '';
+            check.disabled = true;
         }else if([].includes.call(classList, 'fa-floppy-disk')){
-            console.log('save');
             classList.remove('fa-floppy-disk');
             classList.add('fa-pen');
-
-            console.log(editor);
-            console.log(clone);
-            const copy = clone.cloneNode();
-            console.log(copy);
-            editor.replaceWith(copy);
-            setClone();
-            // target.innerText = editor.value;
+            view.innerText = edit.value;
+            view.style.display = '';
+            edit.style.display = 'none';
+            check.disabled = false;
         }
         
     }
@@ -138,9 +114,13 @@ function TODOList(){
         const {id, todo, isDone} = todos;
         return (
             <tr key={id}>
-                <td><input type='checkbox' className='checkbox' name={id} onChange={onChangeCheckbox}/></td>
-                <td>{isDone && <i class="fa-solid fa-check">&nbsp;</i>}<span id={'span'+id} style={{textDecoration: isDone ? 'line-through' : ''}}>{todo}</span></td>
-                <td><i className="fa-solid fa-pen edit" onClick={onClickEdit} id={id}></i></td>
+                <td><input type='checkbox' className='checkbox' name={id} id={'check'+id} onChange={onChangeCheckbox}/></td>
+                <td>
+                    {isDone && <i className="fa-solid fa-check">&nbsp;</i>}
+                    <span id={'span'+id} style={{textDecoration: isDone ? 'line-through' : ''}}>{todo}</span>
+                    <input type="text" id={'input'+id} style={{width: '100%', outline: 'rgb(72, 156, 193)', border: '1px solid rgb(72, 156, 193)', display: 'none'}} />
+                </td>
+                <td>{!isDone && <i className="fa-solid fa-pen edit" onClick={onClickEdit} id={id}></i>}</td>
                 <td><i className="fa-solid fa-trash delete" onClick={onClickDelete} id={id}></i></td>
             </tr>
         )
