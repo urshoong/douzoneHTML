@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //useMemo : 함수 연산량이 많을 때 이전 결과값을 재사용하기 위한 목적
+        const {useState} = React;
+
+        
+        const longtimeCalculator = (number) => {
+            console.log('오래걸리는 연산');
+            const timer1 = performance.now();
+            for(let i = 0; i < 999999999; i++){
+
+            }
+            const timer2 = performance.now();
+            
+            console.log(`${timer2 - timer1}(ms)`);
+
+            return number + 10000;
+        }
+
+        const shorttimeCalculator = (number) => {
+            console.log('오래걸리지 않는 연산');
+            const timer1 = performance.now();
+            const timer2 = performance.now();
+
+            console.log(`${timer2 - timer1}(ms)`);
+            return number + 1;
+        }
+        
+        function App(){
+            const [longtimeNumber, setLongtimeNumber] = useState(1);
+            const [shorttimeNumber, setShorttimeNumber] = useState(1);
+
+            const longTimeResult = longtimeCalculator(longtimeNumber);
+            const shortTimeResult = shorttimeCalculator(shorttimeNumber);
+
+            return(
+                <>
+                    <h3>오래걸리는 계산</h3>
+                    <input 
+                        type="text"
+                        value={longtimeNumber}
+                        onChange={(e) => setLongtimeNumber(parseInt(e.target.value))}
+                    />
+                    <span> + 10000 = {longTimeResult}</span>
+                    <br/>
+                    <h3>오래걸리지 않는 계산</h3>
+                    <input 
+                        type="text"
+                        value={shorttimeNumber}
+                        onChange={(e) => setShorttimeNumber(parseInt(e.target.value))}
+                    />
+                    <span> + 1 = {shortTimeResult}</span>
+                </>
+            )
+        }
+        
+        const element = (
+            <>
+                <App/>
+            </>
+        );
+            
+        const root = document.getElementById('root');
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

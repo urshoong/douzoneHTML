@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const {useState, useRef} = React;
+        
+        function Counter(){
+            const [count, setCount] = useState(0);
+            let variable = 0;
+
+            const countRef = useRef(0);
+
+            console.log('랜더링됨');
+
+            const increaseCount = () => {
+                setCount(count + 1);
+            }
+            
+            const increaseVariable = () => {
+                variable += 1;
+                console.log(`variable : ${variable}`);
+            }
+
+            const increaseCountRef = () => {
+                countRef.current = countRef.current + 1;//countRef.current : 현재값
+                console.log(`countRef : ${countRef.current}`);
+            }
+            
+            return(
+                <>
+                    <h1>count : {count}</h1>
+                    <h1>variable : {variable}</h1>
+                    <h1>countRef = {countRef.current}</h1>
+                    <button onClick={increaseCount}>카운트증가</button>
+                    <button onClick={increaseVariable}>variable증가</button>
+                    <button onClick={increaseCountRef}>countRef 증가</button>
+                </>
+            )
+        }
+
+		
+        const element = (
+			<>
+				<Counter/>
+			</>
+		);
+		const root = document.getElementById('root');
+		ReactDOM.render(element, root);
+
+        /*
+            state : 초기값과 상태유지, 변경시 화면 랜더링
+            변수 : 다시 초기화, 화면에 랜더링 되지않음
+
+            useRef : 화면은 랜더링 되지않고, 상태값은 유지, 특정값을 기억하는 용도로 사용
+        */
+    </script>
+
+</body>
+</html>

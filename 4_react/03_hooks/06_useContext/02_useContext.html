@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body{
+            margin: 0;
+        }
+        .page{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header{
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer{
+            width: 100%;
+            height: 100px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        /*   context는 React컴포넌트 트리 안에서 전역적으로 데이터를 공유할 수 있도록 고안된 방법이다. 
+         * 트리 구조가 복잡해질 수록 하위 컴포넌트로 props를 전달하기 위해 drilling  이 발생할 수 있게 되고,
+         * 그러면 유지보수가 매우 힘들어지고 코드를 읽기도 힘들어지게 된다.
+         * 하지만 context를 사용하면 중간 엘리먼트들에게 props를 넘겨주지 않아도 되고, 유지보수도 훨씬 수월해지게 된다.
+         * 
+         * 단, context를 사용하면 컴포넌트를 재사용하기 어려워지기 때문에 꼭 필요할 때만 써야 한다.
+         * 따라서 때에 따라서는 context보다 컴포넌트 합성이 더 간단한 해결책일 수 있다.
+         */
+
+        const {useState, createContext, useContext} = React;
+
+        //주의 : 앞글자 대문자
+        const DarkModeContext = createContext(null);
+
+        const UserContext = createContext();
+
+        function Header(){
+
+            const context = useContext(DarkModeContext);
+            const {isDark} = context;
+
+            return(
+                <>
+                    <header 
+                        className="header" 
+                        style={{
+                            backgroundColor: isDark ? 'black' : 'lightgray',
+                            color: isDark ? 'white' : 'black'
+                        }}
+                    >
+                        <h1>Welcome to UNI World~</h1>
+                    </header>
+                </>
+            )
+        }
+
+        function Content(){
+
+            const context = useContext(DarkModeContext);
+            const userContext = useContext(UserContext);
+            const {isDark} = context;
+            const {username} = userContext;
+            
+            return(
+                <>
+                    <div 
+                        className="content"
+                        style={{
+                            backgroundColor: isDark ? '#222' : 'white',
+                            color: isDark ? 'white' : 'black'
+                        }}
+                    >
+                        <p>내용입니다</p>
+                        <p>{username} 님 안녕하세요~</p>
+                    </div>
+                </>
+            )
+        }
+
+        function Footer(){
+            const toggleHandler = () => setIsDark(!isDark);
+
+            const context = useContext(DarkModeContext);
+            const {isDark, setIsDark} = context;
+
+            return(
+                <>
+                    <footer 
+                        className="footer"
+                        style={{
+                            backgroundColor: isDark ? 'black' : 'lightgray',
+                            color: isDark ? 'white' : 'black'
+                        }}
+                    >
+                        <button onClick={toggleHandler}>{isDark ? 'Light Mode' : 'Dark Mode'}</button>
+                        Copyright 2022. UNI all rights reserved.
+                    </footer>
+                </>
+            )
+        }
+
+        function Page(){
+
+            return(
+                <>
+                    <div className='page'>
+                        <Header/>
+                        <Content/>
+                        <Footer/>
+                    </div>
+                </>
+            )
+        }
+
+        function App(){
+            const [isDark, setIsDark] = useState(false);
+            const [username, setUsername] = useState('유재석');
+
+            /* Provider는 context를 구독하고 있는 컴포넌트들에게 context의 변화를 알리는 역할을 한다.
+             * Provider(제공자)는 value props을 이용하여 하위 컴포넌트에게 값을 전달한다.
+             * 이 때 값을 전달받을 수 있는 컴포넌트 수에는 제한이 없다.
+             * 
+             * Provider 하위에서 context를 구독하는 모든 컴포넌트는 value prop이 바뀔 때 마다 다시 랜더링된다.
+             *  즉 isDark 가 바뀌면 전체리랜더링
+             */            
+
+            return(
+                <>  <UserContext.Provider value={{username}}>
+                        <DarkModeContext.Provider value={{isDark, setIsDark}}>
+                            <Page/>
+                        </DarkModeContext.Provider>
+                    </UserContext.Provider>
+                </>
+            )
+        }
+		
+        const element = (
+			<>
+                <App/>
+			</>
+		);
+		const root = document.getElementById('root');
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

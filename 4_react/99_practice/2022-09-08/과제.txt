@@ -1,0 +1,9 @@
+https://openweathermap.org/
+
+
+//api 클릭 , Current Weather Data 클릭 ,Subscribe 클릭, 아래 free에  
+//Get API key  발급받기 ,apikeys에 보면 키값 있음
+
+
+[Current Weather Data]
+604240d87e838aab6d32243353d6476e

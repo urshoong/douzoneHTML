@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise
+        
+        /*
+            Promise 생성시 콜백함수 내에서 비동기 작업을 정의하고
+            두가지 매개변수를 전달, 
+            resolve : 성공, reject : 실패 를 의미
+        */
+        function increase(number){
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const result = number + 10;
+
+                    if(result > 50) {
+                        const e = new Error('NumberTooBig');
+
+                        return reject(e);
+                    }
+
+                    resolve(result);
+                }, 1000);
+            });
+
+            return promise;
+        }
+
+        console.log(increase(0));
+
+        /*
+            함수의 선언부에 asnyc 키워드 이용, 함수의 내부에서 promise 사용할때 await를 이용
+            await 키워드가 붙은 promise 호출구문은 작업이 끝날때 까지 기다리며 실행하게 됨
+        */
+
+
+        async function run(){
+            try {
+                let result = await increase(0);
+                console.log(result);
+                result = await increase(result);
+                console.log(result);
+                result = await increase(result);
+                console.log(result);
+                result = await increase(result);
+                console.log(result);
+                result = await increase(result);
+                console.log(result);
+                result = await increase(result);
+                console.log(result);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        run();
+    </script>
+</body>
+</html>

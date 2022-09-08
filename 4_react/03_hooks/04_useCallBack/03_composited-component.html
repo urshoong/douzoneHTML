@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const {useState, useEffect, useCallback} = React;
+
+        
+
+        function App(){
+            const [size, setSize] = useState(200);
+            const [isDark, setIsDark] = useState(false);
+
+            const [red, setRed] = useState(0);
+            const [green, setGreen] = useState(0);
+            const [blue, setBlue] = useState(0);
+
+            const [isRandom, setIsRandom] = useState(false);
+
+            //1. 백그라운드 변경해도 함수가 호출되는 문제, state 변경 시 다시 App읽으면서 생성되는데 하위 컴포넌트에서도 변경된 것으로 인지되서
+            //   하위 컴포넌트의 useEffect가 동작함
+            // const genSquareStyle = () => {
+            //     return {
+            //         backgroundColor: `rgb(${red},${green},${blue})`,
+            //         width: `${size}px`,
+            //         height: `${size}px`,
+            //     }
+            // }
+
+            const genSquareStyle = useCallback(() => {
+                return {
+                    backgroundColor: `rgb(${red},${green},${blue})`,
+                    width: `${size}px`,
+                    height: `${size}px`,
+                }
+            }, [size, red, green, blue]);
+
+            const onClickIsRandom = useCallback(e => {
+                setIsRandom(!isRandom);
+                
+            }, [isRandom]);
+
+            useEffect(() => {
+                console.log('랜더시');
+                
+                return(
+                    console.log('랜더후')
+                )
+            }, [onClickIsRandom]);
+
+            return (
+                <>
+                    <div style={{backgroundColor: isDark ? 'black' : 'white'}}>
+                        <label>size : </label>
+                        <input 
+                            type="range"
+                            min="100"
+                            max="300"
+                            value={size}
+                            onChange={e => setSize(e.target.value)}
+                        />
+                        <button onClick={() => setIsDark(!isDark)}>{isDark.toString()}</button>
+                        <br/>
+
+                        <label>red : </label>
+                        <input 
+                            type="range"
+                            min="0"
+                            mas="255"
+                            value={red}
+                            onChange={e => setRed(e.target.value)}
+                        />
+                        <br/>
+                        <label>green : </label>
+                        <input 
+                            type="range"
+                            min="0"
+                            mas="255"
+                            value={green}
+                            onChange={e => setGreen(e.target.value)}
+                        />
+                        <br/>
+                        <label>blue : </label>
+                        <input 
+                            type="range"
+                            min="0"
+                            mas="255"
+                            value={blue}
+                            onChange={e => setBlue(e.target.value)}
+                        />
+                        <br/>
+                        
+                        <button onClick={onClickIsRandom}>{isRandom.toString()}</button>
+                        
+                        <Square genSquareStyle={genSquareStyle}/>
+                    </div>
+                </>
+            )
+        }
+
+        function Square({genSquareStyle}){
+
+            const [style, setStyle] = useState({});
+
+            useEffect(() => {
+                console.log('style 변경');
+                setStyle(genSquareStyle);
+            }, [genSquareStyle]);
+            
+            return(
+                <div style={style}></div>
+            )
+        }
+		
+        const element = (
+			<>
+				<App/>
+			</>
+		);
+		const root = document.getElementById('root');
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>

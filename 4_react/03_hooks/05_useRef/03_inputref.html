@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const {useState, useRef, useEffect} = React;
+
+        function LoginComponent() {
+            const [form, setForm] = useState({
+                username: '',
+                password: ''
+            });
+
+            const usernameRef = useRef();
+            
+            console.log(usernameRef);
+
+            useEffect(() => {
+                console.log(usernameRef);
+
+                usernameRef.current.focus();
+            }, []);
+
+            const onChangeHandler = e => {
+                setForm({
+                    ...form,
+                    [e.target.name] : e.target.value
+                });
+            }
+
+            const onClickHandler = () => {
+                alert(`username : ${form.username}\npassword : ${form.password}`);
+                setForm({
+                    username: '',
+                    password: ''
+                });
+            }
+
+            return(
+                <>
+                    <label>username :   <input 
+                                            ref={usernameRef}
+                                            type="text" 
+                                            name="username" 
+                                            placeholder="username" 
+                                            value={form.username}
+                                            onChange={onChangeHandler}
+                                        /></label><br/>
+                    <label>password :   <input 
+                                            type="password" 
+                                            name="password" 
+                                            value={form.passwrod}
+                                            onChange={onChangeHandler}
+                                        /></label><br/>
+                    <button onClick={onClickHandler}>로그인</button>
+                </>
+            )
+        }
+		
+        const element = (
+			<>
+                <LoginComponent/>
+			</>
+		);
+		const root = document.getElementById('root');
+		ReactDOM.render(element, root);
+    </script>
+
+</body>
+</html>
