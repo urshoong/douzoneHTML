@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const API_KEY = '2f22a523a086a6bb7b68a9f510c9e7e1';
+
+        const { useState, useEffect } = React;
+
+        function Weather() {
+
+            const [position, setPosition] = useState({longitude: 0, latitude: 0});
+            const [cityname, setCityname] = useState('');
+            const [weather, setWeather] = useState({});
+            const [wind, setWind] = useState({});
+
+            function getPosition() {
+                return new Promise((resolve, reject) => {
+                       navigator.geolocation.getCurrentPosition(currentPosition => {
+                            console.log(currentPosition)
+                            setPosition({
+                                longitude: currentPosition.coords.longitude,
+                                latitude: currentPosition.coords.latitude
+                            });
+                            resolve(currentPosition.coords);
+                       });
+                });
+            }
+            
+            function getWeather(currentPosition) {
+                
+                return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${currentPosition.latitude}&lon=${currentPosition.longitude}&appid=${API_KEY}`)
+                .then(res => (res.json()));
+            }
+            
+            useEffect(
+                async () => {
+                    const currentPosition = await getPosition();
+                    const result = await getWeather(currentPosition);
+                    await setCityname(result.name);
+                    await setWeather(result.weather[0]);
+                    await setWind(result.wind);
+                }, 
+                []
+            );
+
+            return (
+                <>
+                    <h3>현재 위치</h3>
+                    <h4>{ `위도 :  ${ position.longitude } 경도 : ${ position.latitude }` }</h4>
+                    <h4>{ `조회 도시 : ${ cityname }` }</h4>
+                    <h4>{ `날씨 : ${ weather.main } 날씨설명 : ${ weather.description }` }</h4>
+                    <h4>{ `풍향 : ${ wind.deg } 풍속 : ${ wind.speed }m/s` }</h4>
+                </>
+            );
+        }
+        
+        function App() {
+
+            return (
+                <>
+                    <h1>오늘의 날씨</h1>
+                    <Weather/>
+                </>
+            );
+        }
+
+        ReactDOM.render(<Weather/>, document.getElementById('root'));
+      
+    </script>
+    
+</body>
+</html>
