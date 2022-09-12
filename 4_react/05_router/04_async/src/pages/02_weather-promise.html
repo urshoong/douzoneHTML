@@ -12,27 +12,18 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-      
-        const API_KEY = '2f22a523a086a6bb7b68a9f510c9e7e1';
-
-     
+        const API_KEY = '604240d87e838aab6d32243353d6476e';
         const { useState, useEffect } = React;
-
       
         function Weather() {
 
             const [position, setPosition] = useState({});
-
-            
             const [cityname, setCityname] = useState('');
             const [weather, setWeather] = useState({});
-
-
             const [wind, setWind] = useState({}); 
 
             useEffect(
                 () => {
-                   
                     new Promise((resolve, reject) => {
                        navigator.geolocation.getCurrentPosition(currentPosition => {
                             console.log(currentPosition)
@@ -55,7 +46,6 @@
                             
                         });
                     });
-                  
                 }
                 
                 , 
@@ -88,7 +78,7 @@
         }
 
     
-        ReactDOM.render(<Weather/>, document.getElementById('root'));
+        ReactDOM.render(<App/>, document.getElementById('root'));
 
 
     </script>

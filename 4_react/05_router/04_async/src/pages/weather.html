@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.23.1/antd.min.js" integrity="sha512-ikUjlE+RCMN4PK/PsIdoZyZOE80WzVkxvGBwA/bi+6BiZ1Cw0oWYLZMVswYHkM2kLKaocP38OXCpzw9oaAH2zQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ant-design-icons/4.7.0/index.umd.min.js" integrity="sha512-z5FNRTyztWZ5s1kKiRNfN5EZ2OX8QnV9nEU7n/vKPXLlvfUQDFoXVswtHL1FQeuFY2acFX2FlYIsjFGZ/5OHbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19f2d1977d099f20694f9633fbd8c704&libraries=services"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.23.1/antd.min.css" integrity="sha512-2dfaUIGxviUMrpbuuv3TYbt+/sm+ENHKGMNETD1+zrPfO0zylL4SAVDfyDP703Iye+pFMnolC8SqVQi2vDOyGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const API_KEY = '604240d87e838aab6d32243353d6476e';
+
+        const { useState, useEffect } = React;
+        const {  SearchOutlined  } = icons;
+        const {  Button  } = antd;
+
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        function Weather() {
+
+            const [position, setPosition] = useState({longitude: 0, latitude: 0});
+            const [cityname, setCityname] = useState('');
+            const [weather, setWeather] = useState({});
+            const [wind, setWind] = useState({});
+            const [isShow, setIsShow] = useState(false);
+            const [isRender, setIsRender] = useState(0);
+
+            function getPosition() {
+                return new Promise((resolve, reject) => {
+                    new daum.Postcode({
+                        oncomplete: function(data) {
+                            geocoder.addressSearch(data.address, (result, status) => {
+                                if(status == kakao.maps.services.Status.OK){
+                                    setPosition({
+                                        longitude: result[0].road_address.x,
+                                        latitude: result[0].road_address.y
+                                    });
+                                    resolve(result[0].road_address);
+                                }
+                            });
+                        }
+                    }).open();
+                });
+            }
+            
+            function getWeather(currentPosition) {
+                return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${Math.trunc(currentPosition.y * 1000000) / 1000000}&lon=${Math.trunc(currentPosition.x * 1000000) / 1000000}&appid=${API_KEY}`)//&lang=kr
+                .then(res => (res.json()));
+            }
+            
+            useEffect(
+                async () => {
+                    const currentPosition = await getPosition();
+                    const result = await getWeather(currentPosition);
+                    console.log(result)
+                    await setCityname(result.name);
+                    await setWeather(result.weather[0]);
+                    await setWind(result.wind);
+                    setIsShow(true);
+                }, 
+                [isRender]
+            );
+
+            return (
+                <>
+                    <Button icon={<SearchOutlined />} onClick={() => {setIsShow(false); setIsRender((isRender + 1));}}>위치 검색</Button>
+                    {isShow && 
+                    <>
+                        <h3>현재 위치</h3>
+                        <h4>{ `위도 :  ${ position.longitude } 경도 : ${ position.latitude }` }</h4>
+                        <h4>{ `조회 도시 : ${ cityname }` }</h4>
+                        <h4>{ `날씨 : ${ weather.main } 날씨설명 : ${ weather.description }` }</h4>
+                        <h4>{ `풍향 : ${ wind.deg } 풍속 : ${ wind.speed }m/s` }</h4>
+                    </>}
+                </>
+            );
+        }
+        
+        function App() {
+
+            return (
+                <>
+                    <h1>오늘의 날씨</h1>
+                    <Weather/>
+                </>
+            );
+        }
+
+        ReactDOM.render(<App/>, document.getElementById('root'));
+      
+    </script>
+    
+</body>
+</html>

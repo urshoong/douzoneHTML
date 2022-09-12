@@ -1,11 +1,17 @@
 .MenuItem {
-    width: 300px;
+    width: calc(25% - 10px);
     background-color: skyblue;
     cursor: pointer;
     color: black;
+    padding: 10px;
+    margin: 0;
 }
 
 .MenuItem:hover {
     background-color: orangered;
     color: white;
+}
+
+.MenuItem h3{
+    margin: 5px 0;
 }

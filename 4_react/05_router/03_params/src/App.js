@@ -5,6 +5,7 @@ import About from './pages/About';
 import Menu from './pages/Menu';
 import MenuDetails from './pages/MenuDetails';
 import MenuSearchResult from './pages/MenuSearchResult';
+import './App.css'
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 function Header(){
     return(
-        <h1>Welcome to Uni Restaurant</h1>
+        <h1 className='header'>Welcome to Uni Restaurant</h1>
     )
 }
 

@@ -1,5 +1,3 @@
-
-
 /* 
 import { Link } from 'react-router-dom';
 function Navbar(){
@@ -20,10 +18,11 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar(){
     const activestyle = {
-        backgroundColor : 'orangered'
+        backgroundColor : 'skyblue',
+        color: 'white'
     }
     return(
-        <div>
+        <div className='navbar'>
             <ul>
                 {/* NavLink */}
                 {/* isActive 상태값을 사용할 수 있고, style을 callback함수를 통해서 사용할 수 있다 */}

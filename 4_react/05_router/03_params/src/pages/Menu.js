@@ -16,12 +16,15 @@ function Menu(){
     const onClickHandler = () => {
         navigate(`/menu/search?menuName=${searchValue}`);
     }
+    const onKeyPressHandler = () => {
+        onClickHandler();
+    }
 
     return (
         <>
             <h1>판매 메뉴 목록</h1>
             <div>
-                <input type="serach" name="menuName" value={searchValue} onChange={e => setSearchValue(e.target.value)}/>
+                <input type="serach" name="menuName" value={searchValue} onChange={e => setSearchValue(e.target.value)} onKeyPress={onKeyPressHandler}/>
                 <button onClick={onClickHandler}>검색</button>
             </div>
             <div className={boxStyle.MenuBox}>
