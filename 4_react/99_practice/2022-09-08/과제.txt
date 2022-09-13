@@ -7,3 +7,6 @@ https://openweathermap.org/
 
 [Current Weather Data]
 604240d87e838aab6d32243353d6476e
+
+
+https://openweathermap.org/current

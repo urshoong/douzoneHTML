@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
+    <script src="https://unpkg.com/react-redux@8.0.2/dist/react-redux.js"></script>
+    <script src="https://unpkg.com/redux-actions@latest/dist/redux-actions.js"></script>
+    <script src="https://unpkg.com/redux-logger@3.0.6/dist/redux-logger.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const consoleLoggingMiddleware = store => next => action => {
+            console.log(`Middleware`, action);
+            console.log('\t 업데이트전 : ', store.getState());
+
+            const result = next(action);//다음 미들웨어 혹인 리듀서에 액션을 전달
+
+            console.log('\t 업데이트후 : ', store.getState());
+
+            return result; //dispatch(action) 의 결과 count {Provider, useSelector, useDispatch} = ReactRedux;
+        }
+
+        const logger = reduxLogger.createLogger();
+
+        const {Provider, useSelector, useDispatch} = ReactRedux;
+        const {createStore, applyMiddleware} = Redux;
+        const {createAction, createActions, handleActions} = ReduxActions;
+
+        //초기값
+        const initialState = 0;
+
+        const INCREMENT = 'count/INCREASE';
+        const DECREMENT = 'count/DECREASE';
+
+        const {count: {decrease, increase}} = createActions({
+            [INCREMENT]: (amount = 1) => {console.log('action:', amount); return {incrementValue : amount}},
+            [DECREMENT]: (amount = 1) => ({decrementValue : amount})
+        })
+
+        const reducer = handleActions({
+            [INCREMENT]: (state, {payload: {incrementValue}}) => state + incrementValue,
+            [DECREMENT]: (state, {payload: {decrementValue}}) => state - decrementValue
+        }, initialState);
+
+        function App(){
+            const count = useSelector(state => state);
+            
+            const dispatch = useDispatch();
+
+            const increaseCount = () => {
+                dispatch(increase());
+            }
+
+            const decreaseCount = () => {
+                dispatch(decrease());
+            }
+
+            return(
+                <>
+                    <h1>Count : { count }</h1>
+                    <button onClick={ increaseCount }>1 증가</button>
+                    <button onClick={ decreaseCount }>1 감소</button>
+                </>
+            )
+        }
+
+        // const store = createStore(
+        //     reducer,
+        //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        // );
+
+        //여러개 미들웨어를 작성할 수 있고, logger는 마지막에 와야함
+        const store = createStore(reducer, applyMiddleware(consoleLoggingMiddleware, logger));
+        
+        const element = (
+            <>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+            </>
+        );
+        const root = document.getElementById("root");
+        ReactDOM.render(element, root);
+    </script>
+</body>
+</html>

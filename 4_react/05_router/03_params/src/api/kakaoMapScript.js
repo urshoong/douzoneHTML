@@ -1,6 +1,10 @@
 const { kakao } = window;
 
 export default function KakaoMapScript({latitude, longitude}) {
+    console.log('call KakaoMapScript')
+    // console.log(props);
+    // const {latitude, longitude} = props.position;
+    
     console.log(`latitude : ${latitude}`);
     console.log(`longitude : ${longitude}`);
     const container = document.getElementById('myMap');
@@ -9,4 +13,7 @@ export default function KakaoMapScript({latitude, longitude}) {
         level: 3
     };
     const map = new kakao.maps.Map(container, options);
+    return {
+        map
+    }
 }

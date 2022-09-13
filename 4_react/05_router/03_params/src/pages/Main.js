@@ -23,8 +23,12 @@ function Main(){
     const [data, setData] = useState({});
     const { kakao } = window;
 
+    const [map, setMap] = useState();
+
     useEffect(() => {
-        KakaoMapScript(position);
+        const map = KakaoMapScript(position);
+        // console.log(map);
+        setMap(map);
     }, [position]);
     
     useEffect(() => {
@@ -34,9 +38,7 @@ function Main(){
     useEffect(() => {
         const geocoder = new kakao.maps.services.Geocoder();
         geocoder.addressSearch(data.data?.address, (result, status) => {
-            console.log(result);
-            console.log(status);
-            if(status == kakao.maps.services.Status.OK){
+            if(status === kakao.maps.services.Status.OK){
                 setPosition({
                     longitude: result[0].road_address.x,
                     latitude: result[0].road_address.y
@@ -56,6 +58,7 @@ function Main(){
                     <DaumPost setData={setData} forceRender={true}/>
                 </div>
                 <div id='myMap' style={{ width: '80%', height: 'calc(100vh * 0.7)', minHeight: 'calc(100vh * 0.5)' }}></div>
+                {/* <KakaoMapScript position={currentLocation}/> */}
             </div>
         </div>
     )
