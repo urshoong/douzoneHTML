@@ -26,13 +26,18 @@ function Main(){
     const [map, setMap] = useState();
 
     useEffect(() => {
-        const map = KakaoMapScript(position);
-        setMap(map);
+        const map = KakaoMapScript(position)?.map;
+        const markerPosition = new kakao.maps.LatLng(position.latitude, position.longitude);
+        const marker = new kakao.maps.Marker({
+            map: map,
+            position: markerPosition,
+        });
+        // marker.setMap(map);//marker에 map값을 넣어주지 않으면 마커에 setMap으로 세팅
+        setMap(map);//marker에 map값을 넣어주면 그냥 맵에 바로 세팅
     }, [position]);
     
     useEffect(() => {
         setPosition(currentLocation);
-        console.log('currentLocation ::: \n', currentLocation);
     }, [currentLocation]);
 
     useEffect(() => {
