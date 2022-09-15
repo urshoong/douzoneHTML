@@ -1,6 +1,6 @@
 import { Link } from  'react-router-dom';
 
-function MenuItem({ menu }) {
+function MenuListItem({ menu }) {
 
     return (
         <Link to={ `/menu/${ menu.id }` }>
@@ -13,4 +13,4 @@ function MenuItem({ menu }) {
     );
 }
 
-export default MenuItem;
+export default MenuListItem;

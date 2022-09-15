@@ -14,7 +14,7 @@ const useCurrentLocation = (options = {}) => {
       latitude,
       longitude,
     });
-    console.log(location);
+    console.log('location ::: \n', location);
   };
 
   // Error handler for geolocation's `getCurrentPosition` method
@@ -33,6 +33,7 @@ const useCurrentLocation = (options = {}) => {
 
     // Call Geolocation API
     geolocation.getCurrentPosition(handleSuccess, handleError, options);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
   return { location, error };

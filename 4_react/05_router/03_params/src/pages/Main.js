@@ -1,4 +1,4 @@
-import { getWeatherDescKo } from './../api/getWeatherDescKo';
+// import { getWeatherDescKo } from './../api/getWeatherDescKo';
 import { useEffect, useState } from 'react';
 import KakaoMapScript from '../api/kakaoMapScript';
 // import { Button, Modal } from 'antd';
@@ -8,7 +8,7 @@ import useCurrentLocation from "../hooks/useCurrentLocation";
 import { geolocationOptions } from "../constants/geolocationOptions";
 
 import { DaumPost } from '../api/DaumPost';
-import Location from '../components/Location';
+// import Location from '../components/Location';
 
 
 
@@ -16,9 +16,9 @@ function Main(){
     // let weatherDescKo = getWeatherDescKo(200);
     // console.log(weatherDescKo[200]);
     const [position, setPosition] = useState({latitude: 0, longitude: 0});
-    const [cityname, setCityname] = useState('');
-    const [weather, setWeather] = useState({});
-    const [wind, setWind] = useState({});
+    // const [cityname, setCityname] = useState('');
+    // const [weather, setWeather] = useState({});
+    // const [wind, setWind] = useState({});
     const { location: currentLocation = {longitude: 0, latitude: 0}, error: currentError } = useCurrentLocation(geolocationOptions);
     const [data, setData] = useState({});
     const { kakao } = window;
@@ -27,12 +27,12 @@ function Main(){
 
     useEffect(() => {
         const map = KakaoMapScript(position);
-        // console.log(map);
         setMap(map);
     }, [position]);
     
     useEffect(() => {
         setPosition(currentLocation);
+        console.log('currentLocation ::: \n', currentLocation);
     }, [currentLocation]);
 
     useEffect(() => {
@@ -45,6 +45,7 @@ function Main(){
                 });
             }
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
     
     return (

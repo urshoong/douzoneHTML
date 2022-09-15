@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { callRegistMenuAPI } from '../../apis/MenuAPICalls';
 import MenuModifyFormCSS from './MenuModifyForm.module.css'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 function MenuRegistForm() {
+    const MySwal = withReactContent(Swal);
 
     const result = useSelector(state => state.menuReducer);
     const dispatch = useDispatch();
@@ -98,7 +101,11 @@ function MenuRegistForm() {
         () => {
             /* 메뉴 등록 완료 확인 후 /menu로 이동 */
             if(result.regist) {
-                alert('메뉴 등록');
+                // alert('메뉴 등록');
+                MySwal.fire({
+                    icon: 'success',
+                    title: '메뉴 등록 완료'
+                })
                 navigate(`/menu`);
             }
         },

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import MenuItem from '../items/MenuItem';
+import MenuListItem from '../items/MenuListItem';
 import { callGetMenuListAPI } from "../../apis/MenuAPICalls";
 
 
@@ -24,7 +24,7 @@ function MenuList() {
     return (
         menuList && (
             <div className="menuBox">
-                { menuList.map(menu => <MenuItem key={ menu.id } menu={ menu }/>) }
+                { menuList.map(menu => <MenuListItem key={ menu.id } menu={ menu }/>) }
             </div>
         )
     );

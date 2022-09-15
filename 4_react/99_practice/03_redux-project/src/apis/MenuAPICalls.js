@@ -25,7 +25,7 @@ export function callGetMenuAPI(id) {
     
         const result = await request('GET', `/menu/${id}`);
         console.log('getMenu result : ', result);
-    
+        
         dispatch(getMenu(result));
     }
 }

@@ -3,9 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { callModifyMenuAPI } from '../../apis/MenuAPICalls';
 import MenuModifyFormCSS from './MenuModifyForm.module.css'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 function MenuModifyForm() {
+    const MySwal = withReactContent(Swal);
 
+    // {id} : /menu/modify/:id 에서 동적 매개변수의 키/값 쌍의 개체를 반환받아 구조분해할당
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -95,15 +99,19 @@ function MenuModifyForm() {
         () => {
             /* 메뉴 수정 완료 확인 후 /menu로 이동 */
             if(result.modify) {
-                alert('메뉴 수정');
+                // alert('메뉴 수정');
+                MySwal.fire({
+                    icon: 'success',
+                    title: '메뉴 수정 완료'
+                })
                 navigate(`/menu`);
             }
 
-            console.log(JSON.stringify(result))
+            // console.log(JSON.stringify(result))
+            //메뉴 수정 완료 확인 후 결과가 빈 객체(데이터 없음) 이면 다시 해당 메뉴로 이동
             if(JSON.stringify(result) === '{}'    ) {
-                console.log(result)
-        
-                 navigate(`/menu/${id}`)
+                // console.log(result)
+                navigate(`/menu/${id}`)
             }
         },// eslint-disable-next-line
         [result]
@@ -112,7 +120,7 @@ function MenuModifyForm() {
       useEffect(
         () => {
         
-            console.log(`json ; `+JSON.stringify(result))
+            // console.log(`json : `+JSON.stringify(result))
             if(JSON.stringify(result) === '{}'    ) {
                 console.log(result)
         
@@ -147,48 +155,41 @@ function MenuModifyForm() {
     return(
         <>  
             <div className={MenuModifyFormCSS.menuCom}>
-            <h2>{ id }번 메뉴 수정</h2>
-            <label>메뉴이름 : </label>
-            <input type="text" name="menuName" value={ modifyMenu.menuName } onChange={ onChangeHandler }/>
-            <br/>
-            <label>메뉴가격 : </label>
-            <input type="number" name="menuPrice" value={ modifyMenu.menuPrice } onChange={ onChangeHandler }/>
-            <br/>
-            <label>카테고리 : </label>
-            <select name="categoryName" value={ modifyMenu.categoryName } onChange={ onChangeHandler }>
-                <option>한식</option>
-                <option>일식</option>
-                <option>서양</option>
-                <option>동양</option>
-                <option>커피</option>
-                <option>쥬스</option>
-                <option>기타</option>
-            </select>
-            <br/>
-            <label>판매여부 : </label>
-            <select name="isOrderable" value={ modifyMenu.isOrderable } onChange={ onChangeHandler }>
-                <option value="true" >판매 가능</option>
-                <option value="false" >판매 불가</option>
-            </select>
-            <br/>
-            <div className={MenuModifyFormCSS.divDes}>
-            <label>설명 : </label>&nbsp; 
-            <br/> 
-            <textarea name="description" value={ modifyMenu.detail.description } onChange={ onChangeHandler }></textarea>
+                <h2>{ id }번 메뉴 수정</h2>
+                <label>메뉴이름 : </label>
+                <input type="text" name="menuName" value={ modifyMenu.menuName } onChange={ onChangeHandler }/>
+                <br/>
+                <label>메뉴가격 : </label>
+                <input type="number" name="menuPrice" value={ modifyMenu.menuPrice } onChange={ onChangeHandler }/>
+                <br/>
+                <label>카테고리 : </label>
+                <select name="categoryName" value={ modifyMenu.categoryName } onChange={ onChangeHandler }>
+                    <option>한식</option>
+                    <option>일식</option>
+                    <option>서양</option>
+                    <option>동양</option>
+                    <option>커피</option>
+                    <option>쥬스</option>
+                    <option>기타</option>
+                </select>
+                <br/>
+                <label>판매여부 : </label>
+                <select name="isOrderable" value={ modifyMenu.isOrderable } onChange={ onChangeHandler }>
+                    <option value="true" >판매 가능</option>
+                    <option value="false" >판매 불가</option>
+                </select>
+                <br/>
+                <div className={MenuModifyFormCSS.divDes}>
+                    <label>설명 : </label>&nbsp; 
+                    <br/> 
+                    <textarea name="description" value={ modifyMenu.detail.description } onChange={ onChangeHandler }></textarea>
+                </div>
+                <br/>
+                <label>사진 : </label>
+                <input type="file" name="image" accept='image/*' onChange={ fileChangeHandler }/>
+                <br/>
+                <img src={ modifyMenu.detail.image } style={ { maxWidth: 500 } } alt={ modifyMenu.menuName }/>
             </div>
-            <br/>
-            <label>사진 : </label>
-            <input 
-                type="file" 
-                name="image"
-                accept='image/*'
-                onChange={ fileChangeHandler }
-            />
-            <br/>
-            <img src={ modifyMenu.detail.image } style={ { maxWidth: 500 } } alt={ modifyMenu.menuName }/>
-
-            </div>
-            
             <button className ="button" onClick={ onClickHandler }>메뉴 수정</button>
         </>
     )
