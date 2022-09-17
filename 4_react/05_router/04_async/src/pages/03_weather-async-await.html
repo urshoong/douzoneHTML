@@ -39,7 +39,8 @@
             
             function getWeather(currentPosition) {
                 
-                return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${currentPosition.latitude}&lon=${currentPosition.longitude}&appid=${API_KEY}`)
+                // return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${currentPosition.latitude}&lon=${currentPosition.longitude}&appid=${API_KEY}`)
+                return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35.1728519627&lon=129.1307190669&appid=604240d87e838aab6d32243353d6476e`)
                 .then(res => (res.json()));
             }
             

@@ -26,14 +26,15 @@ function Main(){
     const [map, setMap] = useState();
 
     useEffect(() => {
-        const map = KakaoMapScript(position)?.map;
+        const map = KakaoMapScript(position);
         const markerPosition = new kakao.maps.LatLng(position.latitude, position.longitude);
         const marker = new kakao.maps.Marker({
-            map: map,
+            // map: map,
             position: markerPosition,
         });
-        // marker.setMap(map);//marker에 map값을 넣어주지 않으면 마커에 setMap으로 세팅
-        setMap(map);//marker에 map값을 넣어주면 그냥 맵에 바로 세팅
+        marker.setMap(map);//marker에 map값을 넣어주지 않으면 마커에 setMap으로 세팅
+        // setMap(map);//marker에 map값을 넣어주면 그냥 맵에 바로 세팅
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [position]);
     
     useEffect(() => {

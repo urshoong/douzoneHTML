@@ -25,8 +25,10 @@ export function callGetPagingAPI(id){
     console.log('callGetPaging api calls...');
     /* redux-thunk(미들 웨어)를 이용한 비동기 처리 */
     return async (dispatch, getState) => {
+        
         /* Api의 axios 처리 참조  */
         const result = await request('GET', '/menu');
+        
         //메뉴 상세 페이지에서 이전/다음 페이지에 접근하기 위하여 
         const curr = parseInt(result.reduce((pre, cur, idx) => {
             if(cur.id === parseInt(id)) {
