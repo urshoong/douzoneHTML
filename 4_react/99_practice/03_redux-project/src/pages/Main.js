@@ -44,7 +44,7 @@ function Main(){
 
             const iwContent = 
             `<div style=width: 330px; height: auto;>
-                <div style="width: 100%; height: 100px; display: flex; border-bottom: 1px dashed gray;">
+                <div style="width: 330px; height: 100px; display: flex; border-bottom: 1px dashed gray;">
                     <img src='http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png'/>
                     <div style="width: 230px; height: 100px; padding-right: 20px; text-align: right;">
                         <h4>${Math.trunc((parseInt(weather.main.temp) - 273.15)*10)/10} ℃</h4>
@@ -52,7 +52,7 @@ function Main(){
                         <span>${weather.name}, ${weather.sys.country ?? 'unknown'}</span>
                     </div>
                 </div>
-                <div style="width: 100%; height: 50px; display: flex;">
+                <div style="width: 330px; height: 50px; display: flex;">
                     <div style="width: 33%; height: 100%; text-align: center; display: inline-block;">
                         <span>풍속</span><br/>
                         <span>${weather.wind.speed} ㎧</span>

@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import { callGetMenuAPI } from '../../apis/MenuAPICalls';
-import { callGetPagingAPI } from '../../apis/PageAPICalls';
+import { callGetPagingAPI, callGetClearPageAPI } from '../../apis/PageAPICalls';
 import { useNavigate } from 'react-router-dom';
 
 function MenuDetailItem({ id }) {
@@ -22,8 +22,8 @@ function MenuDetailItem({ id }) {
     );
     
     useEffect(() => {
-        console.log('paging :: ', paging);
-    }, [paging])
+        dispatch(callGetMenuAPI(id));
+    }, [paging, dispatch])
 
     const onClickHandler = (e) => {
         console.log(e.target.name);
@@ -31,11 +31,11 @@ function MenuDetailItem({ id }) {
         switch(gbn){
             case 'prev':
                 navigate(`/menu/${parseInt(paging.prev)}`)
-                navigate(0)
+                dispatch(callGetPagingAPI(paging.prev));
                 break;
-            case 'next':
+                case 'next':
                 navigate(`/menu/${parseInt(paging.next)}`)
-                navigate(0)
+                dispatch(callGetPagingAPI(paging.next));
                 break;
             default:
                 break;

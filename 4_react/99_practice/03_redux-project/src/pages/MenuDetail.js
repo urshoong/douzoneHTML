@@ -45,7 +45,7 @@ function MenuDetail() {
     return (
         <div>
             <h1>메뉴 상세</h1>
-            <h1>
+            <>
                 { /* 로그인 된 상황에만 button이 보이도록 조건부 랜더링 */ }
                 { (loginStatus) && 
                     <>
@@ -53,7 +53,7 @@ function MenuDetail() {
                         <button className ="button" onClick={ deleteHandler }>메뉴 삭제</button>
                     </>
                 }
-            </h1>
+            </>
             <MenuDetailItem id={ id }/>
         </div>
     );
